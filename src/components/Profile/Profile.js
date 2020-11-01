@@ -5,7 +5,7 @@ import classes from './Profile.module.css';
 
 const Content = () => {
     return (
-      <div className={classes.content}>
+      <div>
         <img
           className={classes.longpic}
           src="https://upload.wikimedia.org/wikipedia/commons/9/93/Long_sky_background_%2B_PAN.jpg"

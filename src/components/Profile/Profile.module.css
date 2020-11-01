@@ -1,8 +1,4 @@
-.content {
-    grid-area: cont;
-    background-color: #3b555d;
-  }
-  .longpic {
+ .longpic {
     width: 100%;
   }
   .avatar {
