@@ -8,28 +8,3 @@
   grid-template-rows: 120px 1fr;
   grid-template-columns: 2fr 10fr;
 }
-
-.header {
-grid-area: head;
-background-color: #233237;
-}
-
-.logo {
-  height: 100px;
-  width: 100px;
-}
-.nav {
-  grid-area: navig;
-  background-color:#204d48;
-}
-
-.content {
-  grid-area: cont;
-  background-color: #3b555d;
-}
-.longpic {
-  width: 100%;
-}
-.avatar {
-  width: 30%;
-}
