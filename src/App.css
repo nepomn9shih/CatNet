@@ -12,4 +12,5 @@
 .app-wrapper-content {
   grid-area: cont;
   background-color: #3b555d;
+  padding: 20px;
 }
