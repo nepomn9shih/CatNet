@@ -7,13 +7,16 @@ grid-template-columns: 2fr 10fr;
 padding: 10px;
 }
 
-.dialogItems .active{
-color: goldenrod;
-}
 
 .dialog {
-  
+
 }
+
+.dialog a {
+  color: white;
+  text-decoration: none;
+  }
+
 
 .messages {
   padding: 10px;
