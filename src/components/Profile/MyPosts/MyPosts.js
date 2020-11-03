@@ -3,14 +3,7 @@ import React from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-const MyPosts = () => {
-  
-  const postsData = [
-    {id: 1, message: "Привет!", likeCount: 5}, 
-    {id: 2, message: "Как дела?", likeCount: 7},
-    {id: 3, message: "Эй!", likeCount: 12},
-    {id: 4, message: "Чё молчишь?", likeCount: 6}
-  ]
+const MyPosts = ({postsData}) => {
 
   return (
     <div className={classes.postsBlock}>
