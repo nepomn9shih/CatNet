@@ -9,20 +9,31 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
-const App = ({postsData, dialogsData, messagesData}) => {
+const App = ({ state }) => {
   return (
     <BrowserRouter>
-       <div className="app-wrapper">
-      <Header />
-      <Navbar />
-      <div className="app-wrapper-content">
-        <Route path="/profile" render={() => <Profile postsData={postsData}/>}/>
-        <Route path="/dialogs" render={() => <Dialogs dialogsData={dialogsData} messagesData={messagesData}/>}/>
-        <Route path="/news" component={News}/>
-        <Route path="/music" component={Music}/>
-        <Route path="/settings" component={Settings}/>
+      <div className="app-wrapper">
+        <Header />
+        <Navbar />
+        <div className="app-wrapper-content">
+          <Route
+            path="/profile"
+            render={() => <Profile postsData={state.profilePage.posts} />}
+          />
+          <Route
+            path="/dialogs"
+            render={() => (
+              <Dialogs
+                dialogsData={state.messagesPage.dialogs}
+                messagesData={state.messagesPage.messages}
+              />
+            )}
+          />
+          <Route path="/news" component={News} />
+          <Route path="/music" component={Music} />
+          <Route path="/settings" component={Settings} />
+        </div>
       </div>
-    </div>
     </BrowserRouter>
   );
 };
