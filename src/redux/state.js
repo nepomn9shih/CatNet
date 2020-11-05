@@ -1,5 +1,8 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const ADD_POST = "ADD_POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
+const SEND_MESSAGE = "SEND_MESSAGE";
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
+
 
 let store = {
   _state: {
@@ -63,6 +66,13 @@ let store = {
           ],
         },
       ],
+      messages: [
+        { id: 1, message: "Привет!" },
+        { id: 2, message: "Как дела?" },
+        { id: 3, message: "Эй!" },
+        { id: 4, message: "Чё молчишь?" },
+      ],
+      newMessageBody: ''
     },
   },
   getState() {
@@ -88,8 +98,19 @@ let store = {
     } else if (action.type === UPDATE_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.newText;
       this._callSubscriber(this._state);
+    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+      this._state.messagesPage.newMessageBody = action.newMessage;
+      this._callSubscriber(this._state);
+    } else if (action.type === SEND_MESSAGE) {
+      let newMessage = {
+        id: this._state.messagesPage.messages.length + 1,
+        message: this._state.messagesPage.newMessageBody,
+      };
+      this._state.messagesPage.messages.push(newMessage);
+      this._state.messagesPage.newMessageBody = '';
+      this._callSubscriber(this._state);
     }
-  },
+  }
 };
 
 export const addPostActionCreator = () => ({ type: ADD_POST });
@@ -97,6 +118,13 @@ export const addPostActionCreator = () => ({ type: ADD_POST });
 export const updateNewPostActionCreator = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text,
+});
+
+export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
+
+export const updateNewMessageBodyCreator = (message) => ({
+  type: UPDATE_NEW_MESSAGE_BODY,
+  newMessage: message,
 });
 
 export default store;
