@@ -3,17 +3,17 @@ import React from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-const MyPosts = ({postsData, addPost, newPostText, updateNewPostText}) => {
-  
+const MyPosts = ({postsData, newPostText, dispatch}) => {
+console.log(dispatch)  
 let newPostElement = React.createRef()
 
 const addNewPost = () => { 
-  addPost()
+  dispatch({type: "ADD-POST"})
 }
 
 const onPostChange = () => {
   let text = newPostElement.current.value
-  updateNewPostText(text)
+  dispatch({type: "UPDATE-NEW-POST-TEXT", newText: text})
 }
 
   return (

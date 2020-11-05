@@ -5,16 +5,15 @@ import classes from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
-const Profile = ({postsData, addPost, newPostText, updateNewPostText}) => {
+const Profile = ({postsData, newPostText, dispatch}) => {
   
   return (
     <div>
       <ProfileInfo />
       <MyPosts 
       postsData={postsData} 
-      addPost={addPost} 
-      newPostText={newPostText} 
-      updateNewPostText={updateNewPostText}
+      newPostText={newPostText}
+      dispatch={dispatch} 
     />
     </div>
   );
