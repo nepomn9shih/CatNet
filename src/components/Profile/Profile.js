@@ -5,12 +5,12 @@ import classes from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
-const Profile = ({postsData}) => {
+const Profile = ({postsData, addPost}) => {
   
   return (
     <div>
       <ProfileInfo />
-      <MyPosts postsData={postsData}/>
+      <MyPosts postsData={postsData} addPost={addPost}/>
     </div>
   );
 };

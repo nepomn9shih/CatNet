@@ -3,3 +3,8 @@
   color: white;
   text-decoration: none;
   } 
+
+.dialog img {
+  width: 50%;
+  border-radius: 50%;
+}

@@ -9,7 +9,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
-const App = ({ state }) => {
+const App = ({ state, addPost }) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -18,14 +18,14 @@ const App = ({ state }) => {
         <div className="app-wrapper-content">
           <Route
             path="/profile"
-            render={() => <Profile postsData={state.profilePage.posts} />}
+            render={() => <Profile postsData={state.profilePage.posts} addPost={addPost}/>}
           />
           <Route
             path="/dialogs"
             render={() => (
               <Dialogs
                 dialogsData={state.messagesPage.dialogs}
-                messagesData={state.messagesPage.messages}
+                messagesData={state.messagesPage.dialogs[0].messages}
               />
             )}
           />
