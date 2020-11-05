@@ -62,25 +62,28 @@ let store = {
       ],
     },
   },
-  rerenderEntireThree() {
+  getState() {
+    return this._state
+  },
+  _callSubscriber() {
     console.log("State changed!");
   },
   addPost() {
     let newPost = {
-      id: store._state.profilePage.posts.length + 1,
-      message: store._state.profilePage.newPostText,
+      id: this._state.profilePage.posts.length + 1,
+      message: this._state.profilePage.newPostText,
       likeCount: 0,
     };
-    store._state.profilePage.posts.push(newPost);
-    store._state.profilePage.newPostText = "";
-    store.rerenderEntireThree();
+    this._state.profilePage.posts.push(newPost);
+    this._state.profilePage.newPostText = "";
+    this._callSubscriber(this._state);
   },
   updateNewPostText(newText) {
-    store._state.profilePage.newPostText = newText;
-    store.rerenderEntireThree();
+    this._state.profilePage.newPostText = newText;
+    this._callSubscriber(this._state);
   },
   subscribe(observer) {
-    store.rerenderEntireThree = observer;
+    this._callSubscriber = observer;
   },
 };
 
