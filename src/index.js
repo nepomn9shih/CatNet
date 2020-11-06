@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import { BrowserRouter } from "react-router-dom";
-import store from './redux/state'
+import store from './redux/reduxStore'
 
 let rerenderEntireThree = (state) => {
     ReactDOM.render(
@@ -20,4 +20,7 @@ let rerenderEntireThree = (state) => {
 
   rerenderEntireThree(store.getState())
 
-  store.subscribe(rerenderEntireThree)
+  store.subscribe(() => {
+    let state = store.getState()
+    rerenderEntireThree(state)
+  })
