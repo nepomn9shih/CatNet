@@ -4,7 +4,7 @@ import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 const MyPosts = ({postsData, newPostText, addPost, updateNewPostText}) => {
- console.log(postsData)
+
 let newPostElement = React.createRef()
 
 const addNewPost = () => { 
