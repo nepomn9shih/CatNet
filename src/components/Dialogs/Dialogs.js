@@ -21,11 +21,13 @@ const Dialogs = ({messagesPage, sendMessage, updateNewMessageBody}) => {
       {messagesPage.dialogs.map(dialog => <DialogItem 
       name={dialog.name} 
       id={dialog.id} 
-      userAvatar={dialog.userAvatar}/>)}
+      userAvatar={dialog.userAvatar}
+      key={dialog.id}
+      />)}
       </div>
       <div className={classes.messages}>
       <div>
-        {messagesPage.messages.map(message => <Message text={message.message} />)}
+        {messagesPage.messages.map(message => <Message text={message.message} key={message.id}/>)}
       </div>
       <hr />
       <div>
