@@ -6,20 +6,11 @@ import { BrowserRouter } from "react-router-dom";
 import store from './redux/reduxStore'
 import { Provider } from 'react-redux';
 
-let rerenderEntireThree = (state) => {
-    ReactDOM.render(
-      <BrowserRouter>
-      <Provider store={store}>
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-      </Provider>
-      </BrowserRouter>,
-      document.getElementById('root')
-    );
-  }
-
-  rerenderEntireThree(store.getState())
-
-  store.subscribe(() => {
-    let state = store.getState()
-    rerenderEntireThree(state)
-  })
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('root')
+);
