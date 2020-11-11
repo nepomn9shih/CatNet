@@ -1,0 +1,17 @@
+.postAvatarImg {
+  width: 100px;
+  min-width: 100px;
+}
+
+.like {
+  color: white;
+}
+
+.list-group-item h4 {
+  width: 60px;
+  text-align: center;
+  margin: 0px;
+}
+.postAvatar {
+  padding: 0px !important;
+}

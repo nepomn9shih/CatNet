@@ -12,31 +12,39 @@ import UsersContainer from "./components/Users/UsersContainer";
 
 const App = () => {
   return (
-      <div className="app-wrapper">
-        <Header />
-        <Navbar />
-        <div className="app-wrapper-content">
-          <Route
-            path="/profile"
-            render={() => <Profile />}
-          />
-          <Route
-            path="/dialogs"
-            render={() => (
-              <DialogsContainer />
-            )}
-          />
-          <Route path="/news" component={News} />
-          <Route path="/music" component={Music} />
-          <Route path="/settings" component={Settings} />
-          <Route
-            path="/users"
-            render={() => (
-              <UsersContainer />
-            )}
-          />
+      <div className="container">
+        <div className="row">
+          <div className="col-12 bg-header-colour">
+            <Header />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-2 bg-navbar-colour">
+            <Navbar />
+          </div>
+          <div className="col-10 bg-content-colour">
+            <Route
+              path="/profile"
+              render={() => <Profile />}
+            />
+            <Route
+              path="/dialogs"
+              render={() => (
+                <DialogsContainer />
+              )}
+            />
+            <Route path="/news" component={News} />
+            <Route path="/music" component={Music} />
+            <Route path="/settings" component={Settings} />
+            <Route
+              path="/users"
+              render={() => (
+                <UsersContainer />
+              )}
+            />
         </div>
       </div>
+    </div>
   );
 };
 

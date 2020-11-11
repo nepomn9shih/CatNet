@@ -1,47 +1,55 @@
 import React from "react";
-import { sendMessageCreator, updateNewMessageBodyCreator } from "../../redux/messagesReducer";
 import DialogItem from "./DialogItem/DialogItem";
-import classes from "./Dialogs.module.css";
+import "./Dialogs.css";
 import Message from "./Message/Message";
 
-const Dialogs = ({messagesPage, sendMessage, updateNewMessageBody}) => {
-  
+const Dialogs = ({ messagesPage, sendMessage, updateNewMessageBody }) => {
   let onSendMessageClick = () => {
-    sendMessage()
-  }
-  
+    sendMessage();
+  };
+
   let onNewMessageChange = (e) => {
     let body = e.target.value;
-    updateNewMessageBody(body)
-  }
+    updateNewMessageBody(body);
+  };
 
   return (
-    <div className={classes.dialogs}>
-      <div className={classes.dialogItems}>
-      {messagesPage.dialogs.map(dialog => <DialogItem 
-      name={dialog.name} 
-      id={dialog.id} 
-      userAvatar={dialog.userAvatar}
-      key={dialog.id}
-      />)}
-      </div>
-      <div className={classes.messages}>
-      <div>
-        {messagesPage.messages.map(message => <Message text={message.message} key={message.id}/>)}
-      </div>
-      <hr />
-      <div>
-        <div>
-          <textarea 
-            value={messagesPage.newMessageBody} 
-            placeholder="Напиши сообщение" 
-            onChange={onNewMessageChange}
-          />
-        </div>
-        <div>
-          <button onClick={onSendMessageClick}>Add message</button>
+    <div className="row">
+      <div className="col-3">
+        <div className="card bg-dark p-2 m-3">
+          {messagesPage.dialogs.map((dialog) => (
+            <DialogItem
+              name={dialog.name}
+              id={dialog.id}
+              userAvatar={dialog.userAvatar}
+              key={dialog.id}
+            />
+          ))}
         </div>
       </div>
+      <div className="col-9">
+        <div className="list-group m-3">
+          <div className="list-group-item">
+            {messagesPage.messages.map((message) => (
+              <Message text={message.message} key={message.id} />
+            ))}
+          </div>
+          <div className="list-group-item bg-light">
+          <div className="input-group">
+            <textarea
+              className="form-control"
+              value={messagesPage.newMessageBody}
+              placeholder="Напиши сообщение"
+              onChange={onNewMessageChange}
+            />
+            <div className="input-group-append">
+              <button className="btn btn-warning" onClick={onSendMessageClick}>
+                Add message
+              </button>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
   );

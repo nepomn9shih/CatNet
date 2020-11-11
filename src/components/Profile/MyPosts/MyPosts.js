@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from "./MyPosts.module.css";
+import "./MyPosts.css";
 import Post from "./Post/Post";
 
 const MyPosts = ({postsData, newPostText, addPost, updateNewPostText}) => {
@@ -16,18 +16,16 @@ const onPostChange = () => {
   updateNewPostText(text)
 }
   return (
-    <div className={classes.postsBlock}>
+    <div className="mx-3 px-3 card bg-secondary">
       <h3>My posts</h3>
-      <div>
-        <div>
-          <textarea ref={newPostElement} onChange={onPostChange} value={newPostText}/>
-        </div>
-        <div>
-          <button onClick={addNewPost}>Add post</button>
+      <div className="input-group">
+          <textarea className="form-control" ref={newPostElement} onChange={onPostChange} value={newPostText}/>
+        <div className="input-group-append">
+          <button className="btn btn-warning" onClick={addNewPost}>Add post</button>
         </div>
       </div>
       <hr />
-      <div className={classes.posts}>
+      <div className="pb-3">
       {postsData.map(post => <Post 
       message={post.message} 
       likeCount={post.likeCount} 

@@ -1,15 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import store from "../../redux/reduxStore";
 import classes from './Navbar.module.css';
 
 const Navbar = () => {
     return (
-      <nav className={classes.nav}>
+      <nav className="p-3">
       <div className={classes.item}>
         <NavLink to="/profile" activeClassName={classes.active}>Profiles</NavLink>
       </div>
       <div className={classes.item}>
-        <NavLink to="/dialogs" activeClassName={classes.active}>Messages</NavLink>
+        <NavLink to="/dialogs" activeClassName={classes.active}>
+          Messages <span className="badge badge-light">{store.getState().messagesPage.messages.length}</span>
+        </NavLink>
       </div>
       <div className={classes.item}>
         <NavLink to="/news" activeClassName={classes.active}>News</NavLink>

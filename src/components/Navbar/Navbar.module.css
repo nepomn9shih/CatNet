@@ -3,11 +3,12 @@
     text-decoration: none;
 }
 .item a.active{
+    color: orange;
+    text-decoration: none;
+}
+
+.item a:hover{
     color: goldenrod;
     text-decoration: none;
 }
-.nav {
-    grid-area: navig;
-    background-color:#204d48;
-    padding: 20px;
-  }
+

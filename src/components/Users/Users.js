@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Users.module.css";
+import "./Users.css";
 
 let Users = ({ users, follow, unfollow, setUsers }) => {
   
@@ -44,14 +44,15 @@ let Users = ({ users, follow, unfollow, setUsers }) => {
   ])};
 
   return (
-    <div>
+    <div className="d-flex flex-wrap justify-content-around p-2">
       {users.map((user) => {
         return (
-          <div key={user.id}>
-            <span>
+          
+          <div className="card text-center" key={user.id}>
+            <div className="">
               <div>
                 <img
-                  className={classes.avatar}
+                  className="card-img userAvatar"
                   src={user.avatar}
                   alt="avatar"
                 />
@@ -59,6 +60,7 @@ let Users = ({ users, follow, unfollow, setUsers }) => {
               <div>
                 {user.followed ? (
                   <button
+                  className="btn btn-block btn-warning"
                     onClick={() => {
                       unfollow(user.id);
                     }}
@@ -67,6 +69,7 @@ let Users = ({ users, follow, unfollow, setUsers }) => {
                   </button>
                 ) : (
                   <button
+                  className="btn btn-block btn-success"
                     onClick={() => {
                       follow(user.id);
                     }}
@@ -75,20 +78,22 @@ let Users = ({ users, follow, unfollow, setUsers }) => {
                   </button>
                 )}
               </div>
-            </span>
-            <span>
-              <span>
-                <div>{user.fullName}</div>
-                <div>{user.status}</div>
-              </span>
-              <span>
+            </div>
+            <div>
+              <div>
+                <h5 className="card-header">{user.fullName}</h5>
+                <div className="p-1">"{user.status}"</div>
+              </div>
+              <div className="card bg-secondary ">
+                <div><b>{user.location.city}</b></div>
                 <div>{user.location.country}</div>
-                <div>{user.location.city}</div>
-              </span>
-            </span>
+              </div>
+            </div>
           </div>
+          
         );
       })}
+    
     </div>
   );
 };

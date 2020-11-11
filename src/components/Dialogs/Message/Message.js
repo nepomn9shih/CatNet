@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./Message.module.css";
+import "./Message.css";
 
 const Message = ({ text }) => {
-  return <div className={classes.message}>{text}</div>;
+  return <div className="m-1 overflowHack">{text}</div>;
 };
 
 export default Message;
