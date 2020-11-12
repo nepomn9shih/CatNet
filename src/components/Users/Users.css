@@ -1,5 +1,8 @@
 .userAvatar {
     width: 200px !important;
     height: 150px;
+}
 
+.userCard {
+    max-width: 200px;
 }

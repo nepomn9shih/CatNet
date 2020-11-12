@@ -5,13 +5,23 @@ import "./Users.css";
 class User extends React.Component {
   componentDidMount() {
     if (this.props.users.length === 0) {
-      Axios.get("https://social-network.samuraijs.com/api/1.0/users").then(
-        (response) => {
-          this.props.setUsers(response.data.items);
-        }
-      );
+      Axios.get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+      ).then((response) => {
+        this.props.setUsers(response.data.items);
+        this.props.setUsersTotalCount(response.data.totalCount);
+      });
     }
   }
+
+  onPageChanged = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber);
+    Axios.get(
+      `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+    ).then((response) => {
+      this.props.setUsers(response.data.items);
+    });
+  };
 
   getRandomAvatar = (counter) => {
     switch (counter) {
@@ -40,63 +50,121 @@ class User extends React.Component {
   avatarCounter = 0;
 
   render() {
-    return (
-      <div className="d-flex flex-wrap justify-content-around p-2">
-        {this.props.users.map((user) => {
-          this.avatarCounter++;
-          if (this.avatarCounter > 9) this.avatarCounter = 0;
-          return (
-            <div className="mb-3 card text-center" key={user.id}>
-              <div className="">
-                <div>
-                  {console.log(`user ${user.photos}`)}
+    let pagesCount = Math.ceil(
+      this.props.totalUsersCount / this.props.pageSize
+    );
+    let pages = [];
+    for (
+      let i = this.props.currentPage - 3;
+      i <= this.props.currentPage + 3;
+      i++
+    ) {
+      if (i > 0 && i <= pagesCount) pages.push(i);
+    }
 
-                  <img
-                    className="card-img userAvatar"
-                    src={
-                      user.photos.small ||
-                      this.getRandomAvatar(this.avatarCounter)
-                    }
-                    alt="avatar"
-                  />
-                </div>
-                <div>
-                  {user.followed ? (
-                    <button
-                      className="btn btn-block btn-warning"
-                      onClick={() => {
-                        this.props.unfollow(user.id);
-                      }}
-                    >
-                      Unfollow
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-block btn-success"
-                      onClick={() => {
-                        this.props.follow(user.id);
-                      }}
-                    >
-                      Follow
-                    </button>
-                  )}
-                </div>
-              </div>
-              <div>
-                <div>
-                  <h5 className="card-header">{user.name}</h5>
-                  <div className="p-1">"{user.status || "Chilling"}"</div>
-                </div>
-                <div className="card bg-secondary ">
+    return (
+      <div>
+        <div className="mx-4 my-2 text-center">
+          <div class="btn-group" role="group">
+            <button
+              type="button"
+              onClick={() => {
+                this.onPageChanged(1);
+              }}
+              className={
+                1 === this.props.currentPage ? "btn btn-warning" : "btn btn-light"
+              }
+            >
+              &lt;&lt;
+            </button>
+            {pages.map((page) => {
+              return (
+                <button
+                  type="button"
+                  onClick={() => {
+                    this.onPageChanged(page);
+                  }}
+                  className={
+                    page === this.props.currentPage
+                      ? "btn btn-warning"
+                      : "btn btn-light"
+                  }
+                >
+                  {page}
+                </button>
+              );
+            })}
+            <button
+              type="button"
+              onClick={() => {
+                this.onPageChanged(pagesCount);
+              }}
+              className={
+                pagesCount === this.props.currentPage
+                  ? "btn btn-warning"
+                  : "btn btn-light"
+              }
+            >
+              &gt;&gt;
+            </button>
+          </div>
+        </div>
+        <div className="d-flex flex-wrap justify-content-around p-2">
+          {this.props.users.map((user) => {
+            this.avatarCounter++;
+            if (this.avatarCounter > 9) this.avatarCounter = 0;
+            return (
+              <div className="mb-3 card text-center userCard" key={user.id}>
+                <div className="">
                   <div>
-                    <b>City</b>
+                    {console.log(`user ${user.photos}`)}
+                    <img
+                      className="card-img userAvatar"
+                      src={
+                        user.photos.small ||
+                        this.getRandomAvatar(this.avatarCounter)
+                      }
+                      alt="avatar"
+                    />
                   </div>
-                  <div>Country</div>
+                  <div>
+                    {user.followed ? (
+                      <button
+                        className="btn btn-block btn-warning"
+                        onClick={() => {
+                          this.props.unfollow(user.id);
+                        }}
+                      >
+                        Unfollow
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-block btn-success"
+                        onClick={() => {
+                          this.props.follow(user.id);
+                        }}
+                      >
+                        Follow
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <h5 className="card-header">{user.name}</h5>
+                    <div className="p-1">"{user.status || "Chilling"}"</div>
+                  </div>
+                  <div className="card bg-secondary ">
+                    <div>
+                      <b>City</b>
+                    </div>
+                    <div>Country</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     );
   }
