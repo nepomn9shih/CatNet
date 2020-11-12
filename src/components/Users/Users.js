@@ -1,16 +1,11 @@
-
 import React from "react";
 import "./Users.css";
 
 const Users = (props) => {
-  console.log(props)
+  
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
-  for (
-    let i = props.currentPage - 3;
-    i <= props.currentPage + 3;
-    i++
-  ) {
+  for (let i = props.currentPage - 3; i <= props.currentPage + 3; i++) {
     if (i > 0 && i <= pagesCount) pages.push(i);
   }
 
@@ -92,50 +87,41 @@ const Users = (props) => {
           avatarCounter++;
           if (avatarCounter > 9) avatarCounter = 0;
           return (
-            <div className="mb-3 card text-center userCard" key={user.id}>
+            <div className="mb-3 p-2 card text-center userCard" key={user.id}>
               <div className="">
-                <div>
-                  {console.log(`user ${user.photos}`)}
+                <div className="card bg-dark">
                   <img
                     className="card-img userAvatar"
-                    src={
-                      user.photos.small ||
-                      getRandomAvatar(avatarCounter)
-                    }
+                    src={user.photos.small || getRandomAvatar(avatarCounter)}
                     alt="avatar"
                   />
-                </div>
-                <div className="card bg-secondary ">
-                </div>
-                <div className="d-flex justify-content-between">
-                  {user.followed ? (
-                    <button
-                      className="btn btn-block btn-warning"
-                      onClick={() => {
-                        props.unfollow(user.id);
-                      }}
-                    >
-                      Unfollow
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-block btn-success"
-                      onClick={() => {
-                        props.follow(user.id);
-                      }}
-                    >
-                      Follow
-                    </button>
-                  )}
-                  <span className="badge badge-dark text-white">ID: {user.id}</span>
+                  <div className="d-flex justify-content-between">
+                    <span className="badge text-white p-3">ID: {user.id}</span>
+                    {user.followed ? (
+                      <button
+                        className="btn btn-block btn-warning"
+                        onClick={() => {
+                          props.unfollow(user.id);
+                        }}
+                      >
+                        Unfollow
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-block btn-success"
+                        onClick={() => {
+                          props.follow(user.id);
+                        }}
+                      >
+                        Follow
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
               <div>
-                <div>
-                  <h5 className="card-header">{user.name}</h5>
-                  <div className="p-1">"{user.status || "Chilling"}"</div>
-                </div>
-                
+                <h5 className="card-header">{user.name}</h5>
+                <div className="p-1">"{user.status || "Chilling"}"</div>
               </div>
             </div>
           );

@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './Header.module.css';
+import logo from '../../images/logo.png'
 
 const Header = () => {
     return (
@@ -8,7 +9,7 @@ const Header = () => {
           <img
             className={classes.logo}
             alt="logo"
-            src="https://erickson.by/images/tild3135-3165-4566-a235-353432643538__38-instagram-3-512.png"
+            src={logo}
           />
         </div>
         <div className="col-10 d-flex justify-content-center align-items-center">
