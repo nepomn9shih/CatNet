@@ -9,6 +9,8 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import StartPage from "./components/StartPage/StartPage";
 
 const App = () => {
   return (
@@ -23,9 +25,13 @@ const App = () => {
             <Navbar />
           </div>
           <div className="col-10 bg-content-colour">
+          <Route
+              path="/" exact
+              render={() => <StartPage />}
+            />
             <Route
               path="/profile"
-              render={() => <Profile />}
+              render={() => <ProfileContainer />}
             />
             <Route
               path="/dialogs"

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./Users.css";
 
 const Users = (props) => {
@@ -90,11 +91,13 @@ const Users = (props) => {
             <div className="mb-3 p-2 card text-center userCard" key={user.id}>
               <div className="">
                 <div className="card bg-dark">
+                  <NavLink to={'/profile/' + user.id}>
                   <img
                     className="card-img userAvatar"
                     src={user.photos.small || getRandomAvatar(avatarCounter)}
                     alt="avatar"
                   />
+                  </NavLink>
                   <div className="d-flex justify-content-between">
                     <span className="badge text-white p-3">ID: {user.id}</span>
                     {user.followed ? (
