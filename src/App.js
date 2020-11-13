@@ -30,7 +30,7 @@ const App = () => {
               render={() => <StartPage />}
             />
             <Route
-              path="/profile"
+              path="/profile/:userId?"
               render={() => <ProfileContainer />}
             />
             <Route
