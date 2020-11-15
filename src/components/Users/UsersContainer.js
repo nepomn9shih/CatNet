@@ -17,7 +17,10 @@ class UsersContainer extends React.Component {
     console.log("start fetching!");
     this.props.setIsFetchingAC(true);
     Axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+      {
+        withCredentials: true,
+      }
     ).then((response) => {
       this.props.setIsFetchingAC(false);
       console.log("End fetching!");
@@ -30,7 +33,10 @@ class UsersContainer extends React.Component {
     this.props.setCurrentPageAC(pageNumber);
     this.props.setIsFetchingAC(true);
     Axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+      `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
+      {
+        withCredentials: true,
+      }
     ).then((response) => {
       this.props.setIsFetchingAC(false);
       this.props.setUsersAC(response.data.items);

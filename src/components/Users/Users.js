@@ -1,9 +1,9 @@
+import Axios from "axios";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Users.css";
 
 const Users = (props) => {
-  
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i = props.currentPage - 3; i <= props.currentPage + 3; i++) {
@@ -91,12 +91,12 @@ const Users = (props) => {
             <div className="mb-3 p-2 card text-center userCard" key={user.id}>
               <div className="">
                 <div className="card bg-dark">
-                  <NavLink to={'/profile/' + user.id}>
-                  <img
-                    className="card-img userAvatar"
-                    src={user.photos.small || getRandomAvatar(avatarCounter)}
-                    alt="avatar"
-                  />
+                  <NavLink to={"/profile/" + user.id}>
+                    <img
+                      className="card-img userAvatar"
+                      src={user.photos.small || getRandomAvatar(avatarCounter)}
+                      alt="avatar"
+                    />
                   </NavLink>
                   <div className="d-flex justify-content-between">
                     <span className="badge text-white p-3">ID: {user.id}</span>
@@ -104,7 +104,19 @@ const Users = (props) => {
                       <button
                         className="btn btn-block btn-warning"
                         onClick={() => {
-                          props.unfollow(user.id);
+                          Axios.delete(
+                            `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                            {
+                              withCredentials: true,
+                              headers: {
+                                "api-key": "9cf92053-f480-493b-a7cf-c3d9c728c87e"
+                              }
+                            }
+                          ).then((response) => {
+                            if (response.data.resultCode === 0) {
+                              props.unfollow(user.id);
+                            }
+                          });
                         }}
                       >
                         Unfollow
@@ -113,7 +125,20 @@ const Users = (props) => {
                       <button
                         className="btn btn-block btn-success"
                         onClick={() => {
-                          props.follow(user.id);
+                          Axios.post(
+                            `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                            {},
+                            {
+                              withCredentials: true,
+                              headers: {
+                                "api-key": "9cf92053-f480-493b-a7cf-c3d9c728c87e"
+                              }
+                            }
+                          ).then((response) => {
+                            if (response.data.resultCode === 0) {
+                              props.follow(user.id);
+                            }
+                          });
                         }}
                       >
                         Follow
