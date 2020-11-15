@@ -1,5 +1,6 @@
 import React from "react";
 import Preloader from "../../Preloader/Preloader";
+import RandomAvatar from "../../RandomAvatar/RandomAvatar";
 import "./ProfileInfo.css";
 
 const ProfileInfo = (props) => {
@@ -19,13 +20,13 @@ const ProfileInfo = (props) => {
           <div className="col-4">
           <div className="card bg-light m-2">
           <h2 className="card-header">{props.profile.fullName}</h2>
-            <img
+            {(props.profile.photos.large) ?
+              <img
               className="card-img"
-              src={(props.profile.photos.large) 
-                ? props.profile.photos.large
-                : "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cat-face-by-jonathan-fife.jpg"}
+              src={props.profile.photos.large} 
               alt="avatar"
             />
+            : <RandomAvatar />}
             </div> 
           </div>
           <div className="col-8">

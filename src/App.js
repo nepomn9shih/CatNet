@@ -1,7 +1,5 @@
 import React from "react";
 import "./App.css";
-import Profile from "./components/Profile/Profile";
-import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import { Route } from "react-router-dom";
@@ -11,13 +9,14 @@ import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import StartPage from "./components/StartPage/StartPage";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = () => {
   return (
       <div className="container">
         <div className="row">
           <div className="col-12 bg-header-colour">
-            <Header />
+            <HeaderContainer />
           </div>
         </div>
         <div className="row">

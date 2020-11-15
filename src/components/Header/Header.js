@@ -1,19 +1,23 @@
 import React from "react";
-import classes from './Header.module.css';
+import './Header.css';
 import logo from '../../images/logo.png'
+import { NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header className="row">
         <div className="col-2 d-flex align-items-center">
           <img
-            className={classes.logo}
+            className="logo"
             alt="logo"
             src={logo}
           />
         </div>
-        <div className="col-10 d-flex justify-content-center align-items-center">
-          <h1 className="text-white">Кошачья социальная сеть</h1>
+        <div className="col-8 d-flex justify-content-center align-items-center">
+          <h1 className="text-white">CatNet</h1>
+        </div>
+        <div className="col-2 d-flex align-items-center link">
+        {props.isAuth ? props.login : <NavLink to='/login'>Log in</NavLink>}
         </div>
       </header>
     )
