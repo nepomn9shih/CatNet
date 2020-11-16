@@ -1,5 +1,4 @@
 import React from "react";
-import Axios from "axios";
 import { connect } from "react-redux";
 import {
   followAC,
@@ -11,35 +10,23 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
+import { usersAPI } from "../../API/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    console.log("start fetching!");
     this.props.setIsFetchingAC(true);
-    Axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-      {
-        withCredentials: true,
-      }
-    ).then((response) => {
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
       this.props.setIsFetchingAC(false);
-      console.log("End fetching!");
-      this.props.setUsersAC(response.data.items);
-      this.props.setTotalUsersCountAC(response.data.totalCount);
+      this.props.setUsersAC(data.items);
+      this.props.setTotalUsersCountAC(data.totalCount);
     });
   }
   onPageChanged = (pageNumber) => {
-    console.log("Page changed!");
     this.props.setCurrentPageAC(pageNumber);
     this.props.setIsFetchingAC(true);
-    Axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-      {
-        withCredentials: true,
-      }
-    ).then((response) => {
+    usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
       this.props.setIsFetchingAC(false);
-      this.props.setUsersAC(response.data.items);
+      this.props.setUsersAC(data.items);
     });
   };
 
@@ -72,13 +59,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    followAC,
-    unfollowAC,
-    setUsersAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setIsFetchingAC
+  followAC,
+  unfollowAC,
+  setUsersAC,
+  setCurrentPageAC,
+  setTotalUsersCountAC,
+  setIsFetchingAC,
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
