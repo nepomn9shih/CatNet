@@ -13,5 +13,22 @@ export const usersAPI = {
         return axiosCreated.get(
           `users?page=${currentPage}&count=${pageSize}`
         ).then(response => response.data);
-    }
+    },
+
+    getUserData() {
+        return axiosCreated.get(
+            `auth/me`
+          ).then(response => response.data);
+    },
+
+    followRequest(userId) {
+       return axiosCreated.post(
+            `follow/${userId}`).then(response => response.data);
+    },
+
+    unfollowRequest(userId) {
+        return axiosCreated.delete(
+            `follow/${userId}`).then(response => response.data);
+    },
+    
 }
