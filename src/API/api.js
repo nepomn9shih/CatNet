@@ -15,12 +15,6 @@ export const usersAPI = {
         ).then(response => response.data);
     },
 
-    getUserData() {
-        return axiosCreated.get(
-            `auth/me`
-          ).then(response => response.data);
-    },
-
     getProfile(userId) {
         return axiosCreated.get(
             `profile/${userId}`
@@ -37,4 +31,13 @@ export const usersAPI = {
             `follow/${userId}`).then(response => response.data);
     },
     
+}
+
+export const authAPI = {
+
+    getMe() {
+        return axiosCreated.get(
+            `auth/me`
+          ).then(response => response.data);
+    },
 }
