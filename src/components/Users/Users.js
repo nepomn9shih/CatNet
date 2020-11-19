@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../API/api";
 import "./Users.css";
 
 const Users = (props) => {
@@ -105,13 +104,7 @@ const Users = (props) => {
                         disabled={props.followingInProgress.some(id => id === user.id)}
                         className="btn btn-block btn-warning"
                         onClick={() => {
-                          props.setFollowingInProgress(true, user.id)
-                          usersAPI.unfollowRequest(user.id).then((data) => {
-                            if (data.resultCode === 0) {
-                              props.unfollow(user.id);
-                            }
-                            props.setFollowingInProgress(false, user.id);
-                          });
+                          props.unfollow(user.id)
                         }}
                       >
                         Unfollow
@@ -121,13 +114,7 @@ const Users = (props) => {
                        disabled={props.followingInProgress.some(id => id === user.id)}
                         className="btn btn-block btn-success"
                         onClick={() => {
-                          props.setFollowingInProgress(true, user.id)
-                          usersAPI.followRequest(user.id).then((data) => {
-                            if (data.resultCode === 0) {
-                              props.follow(user.id);
-                            }
-                            props.setFollowingInProgress(false, user.id);
-                          });
+                          props.follow(user.id)
                         }}
                       >
                         Follow
@@ -149,3 +136,4 @@ const Users = (props) => {
 };
 
 export default Users;
+

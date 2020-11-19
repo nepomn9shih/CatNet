@@ -21,6 +21,12 @@ export const usersAPI = {
           ).then(response => response.data);
     },
 
+    getProfile(userId) {
+        return axiosCreated.get(
+            `profile/${userId}`
+        ).then(response => response.data)
+    },
+
     followRequest(userId) {
        return axiosCreated.post(
             `follow/${userId}`).then(response => response.data);

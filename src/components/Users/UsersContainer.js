@@ -1,18 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  followAC,
   setCurrentPageAC,
-  setIsFetchingAC,
-  setTotalUsersCountAC,
-  setUsersAC,
-  unfollowAC,
   setFollowingInProgressAC,
-  getUsersThunkCreator
+  getUsersThunkCreator,
+  followThunkCreator,
+  unfollowThunkCreator
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
-import { usersAPI } from "../../API/api";
+
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -33,9 +30,8 @@ class UsersContainer extends React.Component {
           currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
           users={this.props.users}
-          follow={this.props.followAC}
-          unfollow={this.props.unfollowAC}
-          setFollowingInProgress={this.props.setFollowingInProgressAC}
+          follow={this.props.followThunkCreator}
+          unfollow={this.props.unfollowThunkCreator}
           followingInProgress={this.props.followingInProgress}
         />
       </>
@@ -55,8 +51,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  followAC,
-  unfollowAC,
+  followThunkCreator,
+  unfollowThunkCreator,
   setCurrentPageAC,
   setFollowingInProgressAC,
   getUsers: getUsersThunkCreator
