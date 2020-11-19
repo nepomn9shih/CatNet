@@ -7,7 +7,8 @@ import {
   setTotalUsersCountAC,
   setUsersAC,
   unfollowAC,
-  setFollowingInProgressAC
+  setFollowingInProgressAC,
+  getUsersThunkCreator
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
@@ -15,20 +16,11 @@ import { usersAPI } from "../../API/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.setIsFetchingAC(true);
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-      this.props.setIsFetchingAC(false);
-      this.props.setUsersAC(data.items);
-      this.props.setTotalUsersCountAC(data.totalCount);
-    });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize)
   }
   onPageChanged = (pageNumber) => {
     this.props.setCurrentPageAC(pageNumber);
-    this.props.setIsFetchingAC(true);
-    usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
-      this.props.setIsFetchingAC(false);
-      this.props.setUsersAC(data.items);
-    });
+    this.props.getUsers(pageNumber, this.props.pageSize)
   };
 
   render() {
@@ -65,11 +57,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   followAC,
   unfollowAC,
-  setUsersAC,
   setCurrentPageAC,
-  setTotalUsersCountAC,
-  setIsFetchingAC,
-  setFollowingInProgressAC
+  setFollowingInProgressAC,
+  getUsers: getUsersThunkCreator
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
