@@ -102,12 +102,15 @@ const Users = (props) => {
                     <span className="badge text-white p-3">ID: {user.id}</span>
                     {user.followed ? (
                       <button
+                        disabled={props.followingInProgress.some(id => id === user.id)}
                         className="btn btn-block btn-warning"
                         onClick={() => {
+                          props.setFollowingInProgress(true, user.id)
                           usersAPI.unfollowRequest(user.id).then((data) => {
                             if (data.resultCode === 0) {
                               props.unfollow(user.id);
                             }
+                            props.setFollowingInProgress(false, user.id);
                           });
                         }}
                       >
@@ -115,12 +118,15 @@ const Users = (props) => {
                       </button>
                     ) : (
                       <button
+                       disabled={props.followingInProgress.some(id => id === user.id)}
                         className="btn btn-block btn-success"
                         onClick={() => {
+                          props.setFollowingInProgress(true, user.id)
                           usersAPI.followRequest(user.id).then((data) => {
                             if (data.resultCode === 0) {
                               props.follow(user.id);
                             }
+                            props.setFollowingInProgress(false, user.id);
                           });
                         }}
                       >
