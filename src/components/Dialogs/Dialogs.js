@@ -14,8 +14,6 @@ const Dialogs = (props) => {
     props.updateNewMessageBody(body);
   };
 
-if (!props.isAuth) return <Redirect to={"/login"} />
-
   return (
     <div className="row">
       <div className="col-3">
@@ -57,5 +55,7 @@ if (!props.isAuth) return <Redirect to={"/login"} />
     </div>
   );
 };
+
+
 
 export default Dialogs;
