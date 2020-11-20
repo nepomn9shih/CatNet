@@ -1,23 +1,26 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import "./Dialogs.css";
 import Message from "./Message/Message";
 
-const Dialogs = ({ messagesPage, sendMessage, updateNewMessageBody }) => {
+const Dialogs = (props) => {
   let onSendMessageClick = () => {
-    sendMessage();
+    props.sendMessage();
   };
 
   let onNewMessageChange = (e) => {
     let body = e.target.value;
-    updateNewMessageBody(body);
+    props.updateNewMessageBody(body);
   };
+
+if (!props.isAuth) return <Redirect to={"/login"} />
 
   return (
     <div className="row">
       <div className="col-3">
         <div className="card bg-dark p-2 m-3">
-          {messagesPage.dialogs.map((dialog) => (
+          {props.messagesPage.dialogs.map((dialog) => (
             <DialogItem
               name={dialog.name}
               id={dialog.id}
@@ -30,7 +33,7 @@ const Dialogs = ({ messagesPage, sendMessage, updateNewMessageBody }) => {
       <div className="col-9">
         <div className="list-group m-3">
           <div className="list-group-item">
-            {messagesPage.messages.map((message) => (
+            {props.messagesPage.messages.map((message) => (
               <Message text={message.message} key={message.id} />
             ))}
           </div>
@@ -38,7 +41,7 @@ const Dialogs = ({ messagesPage, sendMessage, updateNewMessageBody }) => {
           <div className="input-group">
             <textarea
               className="form-control"
-              value={messagesPage.newMessageBody}
+              value={props.messagesPage.newMessageBody}
               placeholder="Напиши сообщение"
               onChange={onNewMessageChange}
             />

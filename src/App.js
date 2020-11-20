@@ -10,6 +10,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import StartPage from "./components/StartPage/StartPage";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const App = () => {
                 <UsersContainer />
               )}
             />
+             <Route path="/login" component={Login} />
         </div>
       </div>
     </div>
