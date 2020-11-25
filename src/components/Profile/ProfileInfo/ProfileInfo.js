@@ -31,7 +31,7 @@ const ProfileInfo = (props) => {
                 <RandomAvatar />
               )}
             </div>
-            <ProfileStatus status={"Hello, nigger!"} />
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             
           </div>
           <div className="col-8">
