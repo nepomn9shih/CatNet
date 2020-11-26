@@ -20,7 +20,6 @@ const MyPosts = ({postsData, addPost}) => {
       {postsData.map(post => <Post 
         message={post.message} 
         likeCount={post.likeCount} 
-        id={post.id}
         key={post.id}
       />)}
       </div>

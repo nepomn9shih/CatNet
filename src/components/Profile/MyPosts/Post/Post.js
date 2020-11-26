@@ -1,7 +1,8 @@
 import React from "react";
 import "./Post.css";
 
-const Post = ({ message = "No message!", likeCount = 0, id }) => {
+const Post = ({ message, likeCount = 0}) => {
+  if (!message) return null
   return (
     <div className="list-group list-group-horizontal mb-2">
       <div className="list-group-item bg-dark postAvatar">
@@ -15,7 +16,7 @@ const Post = ({ message = "No message!", likeCount = 0, id }) => {
         <h4 className="">&hearts;{likeCount}</h4>
       </div>
       <div className="list-group-item d-flex justify-content-center align-items-center overflowHack">
-        {id}) {message}
+        {message}
       </div>
     </div>
   );
