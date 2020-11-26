@@ -1,18 +1,14 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import "./Dialogs.css";
 import Message from "./Message/Message";
+import SendMessageForm from "./SendMessageForm";
 
 const Dialogs = (props) => {
-  let onSendMessageClick = () => {
-    props.sendMessage();
-  };
-
-  let onNewMessageChange = (e) => {
-    let body = e.target.value;
-    props.updateNewMessageBody(body);
-  };
+  
+  const addNewMessage = (values) => {
+    props.sendMessage(values.message)
+  }
 
   return (
     <div className="row">
@@ -35,21 +31,9 @@ const Dialogs = (props) => {
               <Message text={message.message} key={message.id} />
             ))}
           </div>
-          <div className="list-group-item bg-light">
-          <div className="input-group">
-            <textarea
-              className="form-control"
-              value={props.messagesPage.newMessageBody}
-              placeholder="Напиши сообщение"
-              onChange={onNewMessageChange}
-            />
-            <div className="input-group-append">
-              <button className="btn btn-warning" onClick={onSendMessageClick}>
-                Add message
-              </button>
-            </div>
-          </div>
-          </div>
+          <SendMessageForm 
+          onSubmit={addNewMessage}  
+          />
         </div>
       </div>
     </div>
