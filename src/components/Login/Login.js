@@ -1,12 +1,18 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { maxLengthCreator, requiredField, minLengthCreator } from "../../utils/validators";
 import { Input } from "../FormsControls/FormsControls";
 
 const Login = (props) => {
-    const onSubmit = (formData) => {
-        console.log(formData)
-    }
+
+  const onSubmit = (formData) => {
+    props.loginThunkCreator(formData.email, formData.password, formData.rememberMe)
+  }
+
+  if (props.isAuth) {
+    return <Redirect to={"/profile"} />
+  }
   return (
     <div className="d-flex justify-content-end">
         <div className="m-2 card p-2 text-center">
@@ -26,8 +32,8 @@ const LoginForm = (props) => {
         <form onSubmit={props.handleSubmit}>
           <div>
             <Field 
-              name={"login"} 
-              placeholder={"Login"} 
+              name={"email"} 
+              placeholder={"Email"} 
               component={Input}
               validate={[requiredField, maxLength20]}
               />
@@ -35,6 +41,7 @@ const LoginForm = (props) => {
           <div>
             <Field 
               name={"password"} 
+              type={"password"} 
               placeholder={"Password"} 
               component={Input}
               validate={[requiredField, maxLength20, minLength8]}
