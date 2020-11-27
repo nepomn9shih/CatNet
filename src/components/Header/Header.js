@@ -17,7 +17,9 @@ const Header = (props) => {
           <h1 className="text-white">CatNet</h1>
         </div>
         <div className="col-2 d-flex align-items-center link">
-        {props.isAuth ? props.login : <NavLink to='/login'>Log in</NavLink>}
+        {props.isAuth 
+        ? <div>{props.login} <button onClick={props.logoutThunkCreator} className="btn btn-warning btn-sm">Log out</button></div> 
+        : <NavLink to='/login'>Log in</NavLink>}
         </div>
       </header>
     )
