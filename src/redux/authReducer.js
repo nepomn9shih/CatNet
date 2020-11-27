@@ -32,7 +32,7 @@ export const setUserDataAC = (userId, login, email, isAuth) => ({
 
 export const getAuthUserDataThunkCreator = () => {
   return (dispatch) => {
-    authAPI.getMe().then((data) => {
+    return authAPI.getMe().then((data) => {       //ретурним чтобы получить промис в dispatchResult в initializeAppThunkCreator в app-reducer
       if (data.resultCode === 0) {
         let {id, login, email} = data.data
         dispatch(setUserDataAC(id, login, email, true))
