@@ -10,6 +10,11 @@ border: 2px solid brown ;
 color: brown ;
 }
 
+.formSummaryError {
+    padding: 5px;
+    color: brown;
+}
+
 /* .formControl textarea{
 width: 300px;
 } */
