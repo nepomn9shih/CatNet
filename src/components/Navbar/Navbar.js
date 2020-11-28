@@ -1,9 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import store from "../../redux/reduxStore";
 import classes from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
       <nav className="p-3">
       <div className={classes.item}>
@@ -11,7 +11,7 @@ const Navbar = () => {
       </div>
       <div className={classes.item}>
         <NavLink to="/dialogs" activeClassName={classes.active}>
-          Messages <span className="badge badge-light">{store.getState().messagesPage.messages.length}</span>
+          Messages <span className="badge badge-light">{props.messages.length}</span>
         </NavLink>
       </div>
       <div className={classes.item}>
@@ -25,10 +25,21 @@ const Navbar = () => {
       </div>
       <hr />
       <div className={classes.item}>
-        <NavLink to="/users" activeClassName={classes.active}>Users</NavLink>
+        <NavLink to="/users" activeClassName={classes.active}>
+          Users {props.totalUsersCount 
+              ? <span className="badge badge-light">{props.totalUsersCount}</span>
+              : ""}
+        </NavLink>
       </div>
     </nav>
     )
 }
 
-export default Navbar
+const mapStateToProps = (state) => {
+  return {
+    messages: state.messagesPage.messages,
+    totalUsersCount: state.usersPage.totalUsersCount
+  }
+}
+
+export default connect(mapStateToProps)(Navbar) 
