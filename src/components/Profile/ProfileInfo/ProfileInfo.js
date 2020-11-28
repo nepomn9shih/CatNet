@@ -3,6 +3,7 @@ import Preloader from "../../Preloader/Preloader";
 import RandomAvatar from "../../RandomAvatar/RandomAvatar";
 import "./ProfileInfo.css";
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -31,7 +32,7 @@ const ProfileInfo = (props) => {
                 <RandomAvatar />
               )}
             </div>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             
           </div>
           <div className="col-8">
