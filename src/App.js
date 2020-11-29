@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { initializeAppThunkCreator } from "./redux/appReducer";
 import Preloader from "./components/Preloader/Preloader";
+import Footer from "./components/Footer/Footer";
 
 class App extends React.Component {
   
@@ -64,6 +65,7 @@ class App extends React.Component {
             />
              <Route path="/login" component={LoginContainer} />
         </div>
+        <Footer />
       </div>
     </div>
   );
