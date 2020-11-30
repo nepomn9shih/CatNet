@@ -11,6 +11,10 @@ const Profile = (props) => {
       profile={props.profile}
       status={props.status}
       updateStatus={props.updateStatus}
+      followingInProgress={props.followingInProgress}
+      unfollow={props.unfollow}
+      follow={props.follow}
+      users={props.users}
       />
       <MyPostsContainer 
       store={props.store} 

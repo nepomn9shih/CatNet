@@ -1,22 +1,20 @@
 import React from "react";
 import Preloader from "../../Preloader/Preloader";
 import RandomAvatar from "../../RandomAvatar/RandomAvatar";
+import FollowUnfollowButton from "../../Users/FollowUnfollowButton";
 import "./ProfileInfo.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
-  
+  console.log(props)
   if (!props.profile) {
     return <Preloader />;
   }
-
+  const chosenUser = props.users.filter(user => user.id === props.profile.userId)
+  console.log(props.users)
+  console.log(chosenUser)
   return (
     <div>
-      {/* <img
-        className="longPicture"
-        src="https://upload.wikimedia.org/wikipedia/commons/9/93/Long_sky_background_%2B_PAN.jpg"
-        alt="longPicture"
-      /> */}
       <div className="card bg-dark m-3">
         <div className="row no-gutters">
           <div className="col-4">
@@ -33,7 +31,16 @@ const ProfileInfo = (props) => {
               )}
             </div>
             <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-            
+            {chosenUser[0] 
+            ? <div className="mx-2">
+                <FollowUnfollowButton 
+                  user={chosenUser[0]} 
+                  followingInProgress={props.followingInProgress} 
+                  unfollow={props.unfollow} 
+                  follow={props.follow}
+                />
+              </div>
+            : ""}
           </div>
           <div className="col-8">
             <div className="card bg-light m-2">

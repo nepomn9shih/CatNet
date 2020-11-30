@@ -29,37 +29,37 @@ class App extends React.Component {
   }
   
   return (
-      <div className="container">
-        <HeaderContainer />
+    <div className="container">
+      <HeaderContainer />
       <div className="row">
         <div className="col-2 bg-navbar-colour">
           <Navbar />
         </div>
         <div className="col-10 bg-content-colour">
           <Route
-              path="/" exact
-              render={() => <StartPage />}
-            />
-            <Route
-              path="/profile/:userId?"
-              render={() => <ProfileContainer />}
-            />
-            <Route
-              path="/dialogs"
-              render={() => (
-                <DialogsContainer />
-              )}
-            />
-            <Route path="/news" component={News} />
-            <Route path="/music" component={Music} />
-            <Route path="/settings" component={Settings} />
-            <Route
-              path="/users"
-              render={() => (
-                <UsersContainer />
-              )}
-            />
-             <Route path="/login" component={LoginContainer} />
+            path="/" exact
+            render={() => <StartPage />}
+          />
+          <Route
+            path="/profile/:userId?"
+            render={() => <ProfileContainer />}
+          />
+          <Route
+            path="/dialogs"
+            render={() => (
+              <DialogsContainer />
+            )}
+          />
+          <Route path="/news" component={News} />
+          <Route path="/music" component={Music} />
+          <Route path="/settings" component={Settings} />
+          <Route
+            path="/users"
+            render={() => (
+              <UsersContainer />
+            )}
+          />
+          <Route path="/login" component={LoginContainer} />
         </div>
         <Footer />
       </div>

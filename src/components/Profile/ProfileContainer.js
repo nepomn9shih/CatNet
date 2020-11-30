@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { getProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator} from "../../redux/profileReducer";
+import { followThunkCreator, unfollowThunkCreator } from "../../redux/usersReducer";
+import { getFollowingInProgress, getUsers} from "../../redux/usersSelectors";
 import Profile from "./Profile";
 
 class ProfileContainer extends React.Component {
@@ -21,13 +23,17 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-
+console.log(this.props.followingInProgress)
         return (
             <div>
                 <Profile {...this.props} 
                     profile={this.props.profile} 
                     status={this.props.status}
                     updateStatus={this.props.updateStatusThunkCreator}
+                    followingInProgress={this.props.followingInProgress}
+                    unfollow={this.props.unfollow}
+                    follow={this.props.follow}
+                    users={this.props.users}
                 />
             </div>
         )
@@ -38,13 +44,17 @@ const mapStateToProps = (state) => ({
 profile: state.profilePage.profile,
 status: state.profilePage.status,
 authUserId: state.auth.userId,
-isAuth: state.auth.isAuth
+isAuth: state.auth.isAuth,
+followingInProgress: getFollowingInProgress(state),
+users: getUsers(state)
 })
 
 const mapDispatchToProps = {
     getProfileThunkCreator,
     getStatusThunkCreator,
-    updateStatusThunkCreator
+    updateStatusThunkCreator,
+    unfollow: unfollowThunkCreator,
+    follow: followThunkCreator
 }
 
 export default compose(

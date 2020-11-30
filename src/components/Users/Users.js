@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import FollowUnfollowButton from "./FollowUnfollowButton";
+import Paginator from "./Paginator";
 import "./Users.css";
 
 const Users = (props) => {
@@ -38,50 +40,13 @@ const Users = (props) => {
   return (
     <div>
       <div className="mx-4 my-2 text-center d-flex justify-content-center align-items-center flex-wrap">
-        <div class="btn-group" role="group">
-          <button
-            type="button"
-            onClick={() => {
-              props.onPageChanged(1);
-            }}
-            className={
-              1 === props.currentPage ? "btn btn-warning" : "btn btn-light"
-            }
-          >
-            &lt;&lt;
-          </button>
-          {pages.map((page) => {
-            return (
-              <button
-                type="button"
-                onClick={() => {
-                  props.onPageChanged(page);
-                }}
-                className={
-                  page === props.currentPage
-                    ? "btn btn-warning"
-                    : "btn btn-light"
-                }
-              >
-                {page}
-              </button>
-            );
-          })}
-          <button
-            type="button"
-            onClick={() => {
-              props.onPageChanged(pagesCount);
-            }}
-            className={
-              pagesCount === props.currentPage
-                ? "btn btn-warning"
-                : "btn btn-light"
-            }
-          >
-            &gt;&gt;
-          </button>
-        </div>
-        <div className="card bg-dark text-white mx-4 mt-2 p-1">Users: {props.totalUsersCount}</div>
+        <Paginator 
+          totalUsersCount={props.totalUsersCount} 
+          pageSize={props.pageSize} 
+          currentPage={props.currentPage} 
+          onPageChanged={props.onPageChanged}
+        />
+        <div className="card bg-dark text-white mx-4 mt-1 p-1">Users: {props.totalUsersCount}</div>
       </div>
       <div className="d-flex flex-wrap justify-content-around p-2">
         {props.users.map((user) => {
@@ -100,27 +65,12 @@ const Users = (props) => {
                   </NavLink>
                   <div className="d-flex justify-content-between">
                     <span className="badge text-white p-3">ID: {user.id}</span>
-                    {user.followed ? (
-                      <button
-                        disabled={props.followingInProgress.some(id => id === user.id)}
-                        className="btn btn-block btn-warning"
-                        onClick={() => {
-                          props.unfollow(user.id)
-                        }}
-                      >
-                        Unfollow
-                      </button>
-                    ) : (
-                      <button
-                       disabled={props.followingInProgress.some(id => id === user.id)}
-                        className="btn btn-block btn-success"
-                        onClick={() => {
-                          props.follow(user.id)
-                        }}
-                      >
-                        Follow
-                      </button>
-                    )}
+                    <FollowUnfollowButton 
+                      user={user} 
+                      followingInProgress={props.followingInProgress} 
+                      unfollow={props.unfollow} 
+                      follow={props.follow}
+                    />
                   </div>
                 </div>
               </div>

@@ -69,27 +69,21 @@ export const deletePostAC = (postId) => ({
   postId
 })
 
-export const getProfileThunkCreator = (userId) => {
-  return (dispatch) => {
-    profileAPI.getProfile(userId).then((data) => {
-      dispatch(setUserProfileAC(data));
-    });
-}}
+export const getProfileThunkCreator = (userId) => async (dispatch) => {
+  const data = await profileAPI.getProfile(userId)
+  dispatch(setUserProfileAC(data));   
+}
 
-export const getStatusThunkCreator = (userId) => {
-  return (dispatch) => {
-    profileAPI.getStatus(userId).then((data) => {
-      dispatch(setStatusAC(data));
-    });
-}}
+export const getStatusThunkCreator = (userId) => async (dispatch) => {
+  const data = await profileAPI.getStatus(userId)
+  dispatch(setStatusAC(data));
+}
 
-export const updateStatusThunkCreator = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(setStatusAC(status));
-      }
-    });
-}}
+export const updateStatusThunkCreator = (status) => async (dispatch) => {
+  const data = await profileAPI.updateStatus(status)
+  if (data.resultCode === 0) {
+    dispatch(setStatusAC(status));
+  }  
+}
 
 export default profileReducer;

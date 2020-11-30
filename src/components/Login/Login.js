@@ -4,13 +4,13 @@ import { Field, reduxForm } from "redux-form";
 import { maxLengthCreator, requiredField, minLengthCreator } from "../../utils/validators";
 import { Input } from "../FormsControls/FormsControls";
 
-const Login = (props) => {
+const Login = ({loginThunkCreator, isAuth}) => {
 
   const onSubmit = (formData) => {
-    props.loginThunkCreator(formData.email, formData.password, formData.rememberMe)
+    loginThunkCreator(formData.email, formData.password, formData.rememberMe)
   }
 
-  if (props.isAuth) {
+  if (isAuth) {
     return <Redirect to={"/profile"} />
   }
   return (
@@ -27,9 +27,9 @@ const Login = (props) => {
 const maxLength20 = maxLengthCreator(20)
 const minLength8 = minLengthCreator(8)
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div>
             <Field 
               name={"email"} 
@@ -47,7 +47,7 @@ const LoginForm = (props) => {
               validate={[requiredField, maxLength20, minLength8]}
               />
           </div>
-          {props.error && <div className="formSummaryError">{props.error}</div>}
+          {error && <div className="formSummaryError">{error}</div>}
           <div>
             <Field name={"rememberMe"} type={"checkbox"} component={Input}/> Remember me
           </div>

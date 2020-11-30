@@ -92,39 +92,30 @@ export const setIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFe
 
 export const setFollowingInProgressAC = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-  return (dispatch) => {
+export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
   dispatch(setIsFetchingAC(true));
-  usersAPI.getUsers(currentPage, pageSize).then((data) => {
-    dispatch(setIsFetchingAC(false));
-    dispatch(setUsersAC(data.items));
-    dispatch(setTotalUsersCountAC(data.totalCount));
-  });
-}}
+  const data = await usersAPI.getUsers(currentPage, pageSize)
+  dispatch(setIsFetchingAC(false));
+  dispatch(setUsersAC(data.items));
+  dispatch(setTotalUsersCountAC(data.totalCount));
+}
 
-export const unfollowThunkCreator = (userId) => {
-  return (dispatch) => {
-    dispatch(setFollowingInProgressAC(true, userId))
-    usersAPI.unfollowRequest(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(unfollowAC(userId));
-      }
-      dispatch(setFollowingInProgressAC(false, userId));
-    });
-}}
+export const unfollowThunkCreator = (userId) => async (dispatch) => {
+  dispatch(setFollowingInProgressAC(true, userId))
+  const data = await usersAPI.unfollowRequest(userId)
+  if (data.resultCode === 0) {
+    dispatch(unfollowAC(userId));
+  }
+  dispatch(setFollowingInProgressAC(false, userId));
+}
 
-export const followThunkCreator = (userId) => {
-  return (dispatch) => {
-    dispatch(setFollowingInProgressAC(true, userId))
-    usersAPI.followRequest(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(followAC(userId));
-      }
-      dispatch(setFollowingInProgressAC(false, userId));
-    });
-}}
-
-
-
+export const followThunkCreator = (userId) => async (dispatch) => {
+  dispatch(setFollowingInProgressAC(true, userId))
+  const data = await usersAPI.followRequest(userId)
+  if (data.resultCode === 0) {
+    dispatch(followAC(userId));
+  }
+  dispatch(setFollowingInProgressAC(false, userId));  
+}
 
 export default usersReducer;
