@@ -7,15 +7,16 @@ const DialogItem = ({ name, id, userAvatar }) => {
   return (
     <div className="dialog mb-2">
       <NavLink to={"/dialogs/" + id}>
-        <div className="row">
-          <div className="col-4">
-            <img src={userAvatar} alt="userAvatar" />
+        <div className="d-flex justify-content-around flex-wrap">
+          <div className="">
+            <img className="w-100 rounded" src={userAvatar} alt="userAvatar" />
           </div>
-          <div className="col p-2">
+          <div className="p-2">
           {name}
           </div>
         </div>
       </NavLink>
+      <hr />
     </div>
   );
 };

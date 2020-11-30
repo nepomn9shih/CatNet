@@ -37,7 +37,7 @@ const Users = (props) => {
 
   return (
     <div>
-      <div className="mx-4 my-2 text-center d-flex justify-content-center align-items-center">
+      <div className="mx-4 my-2 text-center d-flex justify-content-center align-items-center flex-wrap">
         <div class="btn-group" role="group">
           <button
             type="button"
@@ -81,7 +81,7 @@ const Users = (props) => {
             &gt;&gt;
           </button>
         </div>
-        <div className="card bg-dark text-white mx-4 p-1">Users: {props.totalUsersCount}</div>
+        <div className="card bg-dark text-white mx-4 mt-2 p-1">Users: {props.totalUsersCount}</div>
       </div>
       <div className="d-flex flex-wrap justify-content-around p-2">
         {props.users.map((user) => {

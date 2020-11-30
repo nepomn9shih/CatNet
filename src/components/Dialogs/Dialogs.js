@@ -22,9 +22,10 @@ const Dialogs = (props) => {
               key={dialog.id}
             />
           ))}
+          <button className="btn btn-warning btn-sm">***</button>
         </div>
       </div>
-      <div className="col-9">
+      <div className="col">
         <div className="list-group m-3">
           <div className="list-group-item">
             {props.messagesPage.messages.map((message) => (

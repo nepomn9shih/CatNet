@@ -2,10 +2,10 @@ import React from "react";
 import Preloader from "../../Preloader/Preloader";
 import RandomAvatar from "../../RandomAvatar/RandomAvatar";
 import "./ProfileInfo.css";
-import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
+  
   if (!props.profile) {
     return <Preloader />;
   }
@@ -21,7 +21,7 @@ const ProfileInfo = (props) => {
         <div className="row no-gutters">
           <div className="col-4">
             <div className="card bg-light m-2">
-              <h2 className="card-header">{props.profile.fullName}</h2>
+              <h2 className="card-header text-center">{props.profile.fullName}</h2>
               {props.profile.photos.large ? (
                 <img
                   className="card-img"

@@ -3,7 +3,7 @@ import React from "react";
 const RandomAvatar = (userId) => {
     let random = Math.ceil(Math.random()*10)
     return (
-        <img className="w-100" src={getRandomAvatar(random)} alt="randomAvatar" />
+        <img className="w-100 rounded" src={getRandomAvatar(random)} alt="randomAvatar" />
     )
 }
 

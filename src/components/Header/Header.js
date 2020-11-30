@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
     return (
-        <header className="row">
+        <header className="row bg-header-colour">
         <div className="col-3 d-flex align-items-center">
           <img
             className="logo"
@@ -18,7 +18,10 @@ const Header = (props) => {
         </div>
         <div className="col-3 d-flex justify-content-end align-items-center link pr-3">
         {props.isAuth 
-        ? <div>{props.login} <button onClick={props.logoutThunkCreator} className="btn btn-warning btn-sm">Log out</button></div> 
+        ? <div className="d-flex justify-content-around align-items-center flex-wrap">
+            <div className="p-1 m-1">{props.login}</div> 
+            <button onClick={props.logoutThunkCreator} className="btn btn-warning btn-sm">Log out</button>
+          </div> 
         : <NavLink to='/login'><button className="btn btn-warning btn-sm">Log in</button></NavLink>}
         </div>
       </header>

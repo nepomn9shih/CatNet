@@ -1,4 +1,3 @@
-
 .dialog a {
   color: white;
   text-decoration: none;
@@ -13,8 +12,3 @@ dialog a.active{
       color: orange;
       text-decoration: none;
       } 
-
-.dialog img {
-  width: 100%;
-  border-radius: 50%;
-}

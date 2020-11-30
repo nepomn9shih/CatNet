@@ -30,16 +30,12 @@ class App extends React.Component {
   
   return (
       <div className="container">
-        <div className="row">
-          <div className="col-12 bg-header-colour">
-            <HeaderContainer />
-          </div>
+        <HeaderContainer />
+      <div className="row">
+        <div className="col-2 bg-navbar-colour">
+          <Navbar />
         </div>
-        <div className="row">
-          <div className="col-2 bg-navbar-colour">
-            <Navbar />
-          </div>
-          <div className="col-10 bg-content-colour">
+        <div className="col-10 bg-content-colour">
           <Route
               path="/" exact
               render={() => <StartPage />}
