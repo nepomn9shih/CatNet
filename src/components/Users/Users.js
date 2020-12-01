@@ -1,15 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import FollowUnfollowButton from "./FollowUnfollowButton";
 import Paginator from "./Paginator";
+import User from "./User";
 import "./Users.css";
 
-const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-  for (let i = props.currentPage - 3; i <= props.currentPage + 3; i++) {
-    if (i > 0 && i <= pagesCount) pages.push(i);
-  }
+const Users = ({
+  totalUsersCount, 
+  pageSize, 
+  currentPage, 
+  onPageChanged, 
+  followingInProgress, 
+  follow,
+  unfollow,
+  users
+}) => {
 
   const getRandomAvatar = (counter) => {
     switch (counter) {
@@ -41,44 +44,25 @@ const Users = (props) => {
     <div>
       <div className="mx-4 my-2 text-center d-flex justify-content-center align-items-center flex-wrap">
         <Paginator 
-          totalUsersCount={props.totalUsersCount} 
-          pageSize={props.pageSize} 
-          currentPage={props.currentPage} 
-          onPageChanged={props.onPageChanged}
+          totalUsersCount={totalUsersCount} 
+          pageSize={pageSize} 
+          currentPage={currentPage} 
+          onPageChanged={onPageChanged}
         />
-        <div className="card bg-dark text-white mx-4 mt-1 p-1">Users: {props.totalUsersCount}</div>
+        <div className="card bg-dark text-white mx-4 mt-1 p-1">Users: {totalUsersCount}</div>
       </div>
       <div className="d-flex flex-wrap justify-content-around p-2">
-        {props.users.map((user) => {
+        {users.map((user) => {
           avatarCounter++;
           if (avatarCounter > 9) avatarCounter = 0;
           return (
-            <div className="mb-3 p-2 card text-center userCard" key={user.id}>
-              <div className="">
-                <div className="card bg-dark">
-                  <NavLink to={"/profile/" + user.id}>
-                    <img
-                      className="card-img userAvatar"
-                      src={user.photos.small || getRandomAvatar(avatarCounter)}
-                      alt="avatar"
-                    />
-                  </NavLink>
-                  <div className="d-flex justify-content-between">
-                    <span className="badge text-white p-3">ID: {user.id}</span>
-                    <FollowUnfollowButton 
-                      user={user} 
-                      followingInProgress={props.followingInProgress} 
-                      unfollow={props.unfollow} 
-                      follow={props.follow}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h5 className="card-header">{user.name}</h5>
-                <div className="p-1">"{user.status || "Chilling"}"</div>
-              </div>
-            </div>
+            <User 
+              user={user} 
+              followingInProgress={followingInProgress} 
+              follow={follow} 
+              unfollow={unfollow}
+              avatarCounter={avatarCounter}
+            />
           );
         })}
       </div>

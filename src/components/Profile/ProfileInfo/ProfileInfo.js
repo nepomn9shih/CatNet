@@ -32,7 +32,7 @@ const ProfileInfo = (props) => {
             </div>
             <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             {chosenUser[0] 
-            ? <div className="mx-2">
+            ? <div className="mx-2 mb-2">
                 <FollowUnfollowButton 
                   user={chosenUser[0]} 
                   followingInProgress={props.followingInProgress} 

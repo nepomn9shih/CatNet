@@ -7,7 +7,7 @@ const RandomAvatar = (userId) => {
     )
 }
 
-const getRandomAvatar = (counter) => {
+export const getRandomAvatar = (counter) => {
     switch (counter) {
       case 1:
         return "https://www.eastbaytimes.com/wp-content/uploads/2018/10/GettyImages-9015747841.jpg?w=620";
