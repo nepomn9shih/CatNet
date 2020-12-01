@@ -8,8 +8,8 @@ const maxLength100 = maxLengthCreator(100)
 const SendMessageForm = (props) => {
     
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div className="list-group-item bg-light">
+        <div className="list-group-item bg-light">
+            <form onSubmit={props.handleSubmit}>
                 <div className="input-group">
                     <Field
                         name={"message"}
@@ -24,8 +24,8 @@ const SendMessageForm = (props) => {
                         </button>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     )
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import AddPostForm from "./AddPostForm";
-import "./MyPosts.css";
 import Post from "./Post/Post";
 
 const MyPosts = React.memo((props) => {

@@ -11,6 +11,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
     <div class="btn-group" role="group">
       <button
         type="button"
+        disabled={1 === currentPage}
         onClick={() => {
           onPageChanged(1);
         }}
@@ -37,6 +38,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
       })}
       <button
         type="button"
+        disabled={pagesCount === currentPage}
         onClick={() => {
           onPageChanged(pagesCount);
         }}

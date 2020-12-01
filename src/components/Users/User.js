@@ -19,12 +19,14 @@ const User = ({user, followingInProgress, follow, unfollow, avatarCounter}) => {
           </NavLink>
           <div className="d-flex justify-content-between">
             <span className="badge text-white p-3">ID: {user.id}</span>
-            <FollowUnfollowButton
-              user={user}
-              followingInProgress={followingInProgress}
-              unfollow={unfollow}
-              follow={follow}
-            />
+            <div className="m-1">
+              <FollowUnfollowButton
+                user={user}
+                followingInProgress={followingInProgress}
+                unfollow={unfollow}
+                follow={follow}
+              />
+            </div>
           </div>
         </div>
       </div>
