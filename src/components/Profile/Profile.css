@@ -1,4 +1,6 @@
-
+.profileAvatar img{
+  max-width: 400px;
+}
 
 .like {
   color: white;
@@ -8,7 +10,4 @@
   min-width: 50px;
   text-align: center;
   margin: 0px;
-}
-.postAvatar {
-  padding: 0px !important;
 }
