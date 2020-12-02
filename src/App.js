@@ -18,6 +18,7 @@ import Preloader from "./components/Preloader/Preloader";
 import Footer from "./components/Footer/Footer";
 import { withSuspense } from "./hoc/withSuspense";
 import Games from "./components/Games/Games";
+import About from "./components/About/About";
 
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
@@ -68,6 +69,7 @@ class App extends React.Component {
             render={withSuspense(UsersContainer)}
           />
           <Route path="/login" component={withSuspense(LoginContainer)} />
+          <Route path="/about" component={About} />
         </div>
         <Footer />
       </div>

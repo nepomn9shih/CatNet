@@ -4,20 +4,24 @@ import "../../Profile.css";
 const Post = ({ message, likeCount = 0}) => {
   if (!message) return null
   return (
-    <div className="list-group list-group-horizontal mb-2 row">
-      <div className="list-group-item bg-dark postAvatar col-3 col-md-1">
-      <img
-        className="w-100"
-        src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cat-face-by-jonathan-fife.jpg"
-        alt="avatar"
-      />
-      </div>
-      <div className="bg-dark d-flex justify-content-center align-items-center like col-3 col-md-1">
-        <h5 className="">&hearts;{likeCount}</h5>
-      </div>
-      <div className="list-group-item d-flex align-items-center overflowHack px-2">
+    <div className="mb-2 card border-0 bg-dark">
+    <div className="d-flex flex-wrap">
+        <div className="list-group list-group-horizontal m-1">
+          <div className="postAvatar list-group-item p-1">
+            <img
+              className="rounded"
+              src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cat-face-by-jonathan-fife.jpg"
+              alt="avatar"
+            />
+          </div>
+          <div className="d-flex justify-content-center align-items-center list-group-item p-0 like">
+            <span className="p-2"><b>&hearts;{likeCount}</b></span>
+          </div>
+        </div>
+      <div className="card overflowHack flex-grow-1 m-1 px-2">
         {message}
       </div>
+    </div>
     </div>
   );
 };

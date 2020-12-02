@@ -32,7 +32,7 @@ const ProfileInfo = (props) => {
               </div>
             : ""}
           </div>
-          <div className="">
+          <div className="flex-grow-1">
             <ProfileAboutMe profile={props.profile}/>
             <ProfileContacts profile={props.profile}/>
           </div>

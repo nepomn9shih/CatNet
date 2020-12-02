@@ -34,6 +34,10 @@ const Navbar = (props) => {
               : ""}
         </NavLink>
       </div>
+      <hr />
+      <div className="item">
+        <NavLink to="/about" activeClassName="active">About</NavLink>
+      </div>
     </nav>
     )
 }
