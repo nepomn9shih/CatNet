@@ -1,11 +1,12 @@
 import React from "react";
-import classes from './News.module.css';
+import news from '../../images/news.gif'
 
 const News = (props) => {
     return (
-        <div>
-          News
-        </div>
+      <div className="container m-3 text-center text-white">
+      <img className="w-50 rounded-circle" src={news} alt={"news"}/>
+  <h3>Новости</h3>
+  </div>
     )
 }
 

@@ -3,7 +3,7 @@ import React from "react";
 const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
-  for (let i = currentPage - 3; i <= currentPage + 3; i++) {
+  for (let i = currentPage - 2; i <= currentPage + 2; i++) {
     if (i > 0 && i <= pagesCount) pages.push(i);
   }
 
@@ -16,7 +16,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
           onPageChanged(1);
         }}
         className={
-          1 === currentPage ? "btn btn-warning" : "btn btn-light"
+          1 === currentPage ? "btn btn-warning btn-sm" : "btn btn-light btn-sm"
         }
       >
         &lt;&lt;
@@ -29,7 +29,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
               onPageChanged(page);
             }}
             className={
-              page === currentPage ? "btn btn-warning" : "btn btn-light"
+              page === currentPage ? "btn btn-warning btn-sm" : "btn btn-light btn-sm"
             }
           >
             {page}
@@ -43,7 +43,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
           onPageChanged(pagesCount);
         }}
         className={
-          pagesCount === currentPage ? "btn btn-warning" : "btn btn-light"
+          pagesCount === currentPage ? "btn btn-warning btn-sm" : "btn btn-light btn-sm"
         }
       >
         &gt;&gt;

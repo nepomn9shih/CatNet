@@ -20,9 +20,9 @@ const Header = (props) => {
         {props.isAuth 
         ? <div className="d-flex justify-content-around align-items-center flex-wrap">
             <div className="p-1 m-1">{props.login}</div> 
-            <button onClick={props.logoutThunkCreator} className="btn btn-warning btn-sm">Log out</button>
+            <button onClick={props.logoutThunkCreator} className="btn btn-warning btn-sm mr-2">Log out</button>
           </div> 
-        : <NavLink to='/login'><button className="btn btn-warning btn-sm">Log in</button></NavLink>}
+        : <NavLink to='/login'><button className="btn btn-warning btn-sm mr-2">Log in</button></NavLink>}
         </div>
       </header>
     )

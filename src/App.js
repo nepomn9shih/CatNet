@@ -17,6 +17,7 @@ import { initializeAppThunkCreator } from "./redux/appReducer";
 import Preloader from "./components/Preloader/Preloader";
 import Footer from "./components/Footer/Footer";
 import { withSuspense } from "./hoc/withSuspense";
+import Games from "./components/Games/Games";
 
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
@@ -35,15 +36,19 @@ class App extends React.Component {
   }
   
   return (
-    <div className="container">
+    <div className="container-lg">
       <HeaderContainer />
       <div className="row">
-        <div className="col-2 bg-navbar-colour">
+        <div className="col-3 col-md-2 bg-navbar-colour">
           <Navbar />
         </div>
-        <div className="col-10 bg-content-colour">
+        <div className="col-9 col-md-10 bg-content-colour">
           <Route
             path="/" exact
+            render={() => <StartPage />}
+          />
+          <Route
+            path="/CatNet"
             render={() => <StartPage />}
           />
           <Route
@@ -57,6 +62,7 @@ class App extends React.Component {
           <Route path="/news" component={News} />
           <Route path="/music" component={Music} />
           <Route path="/settings" component={Settings} />
+          <Route path="/games" component={Games} />
           <Route
             path="/users"
             render={withSuspense(UsersContainer)}
