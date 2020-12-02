@@ -10,18 +10,20 @@ const SendMessageForm = (props) => {
     return (
         <div className="list-group-item bg-light">
             <form onSubmit={props.handleSubmit}>
-                <div className="input-group">
-                    <Field
-                        name={"message"}
-                        component={Textarea}
-                        className="form-control"
-                        placeholder="Напиши сообщение"
-                        validate={[requiredField, maxLength100]}
-                    />
-                    <div className="input-group-append">
-                        <button className="btn btn-warning">
-                        Add message
-                        </button>
+                <div className="raw">
+                    <div className="col-12 col-md-9">
+                        <Field
+                            name={"message"}
+                            component={Textarea}
+                            className="form-control"
+                            placeholder="Напиши сообщение"
+                            validate={[requiredField, maxLength100]}
+                        />
+                        <div className="mt-1">
+                            <button className="btn btn-sm btn-warning btn-block">
+                            <b>Add message</b>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

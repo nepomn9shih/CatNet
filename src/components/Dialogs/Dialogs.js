@@ -12,8 +12,8 @@ const Dialogs = (props) => {
 
   return (
     <div className="row">
-      <div className="col-3">
-        <div className="card bg-dark p-2 m-3">
+      <div className="col-4 col-md-3">
+        <div className="card bg-dark p-2 m-2">
           {props.messagesPage.dialogs.map((dialog) => (
             <DialogItem
               name={dialog.name}
@@ -26,7 +26,7 @@ const Dialogs = (props) => {
         </div>
       </div>
       <div className="col">
-        <div className="list-group m-3">
+        <div className="list-group m-2">
           <div className="list-group-item">
             {props.messagesPage.messages.map((message) => (
               <Message text={message.message} key={message.id} />
