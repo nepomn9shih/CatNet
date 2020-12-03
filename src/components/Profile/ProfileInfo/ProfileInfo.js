@@ -8,9 +8,9 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
   
-  if (!props.profile) {
-    return <Preloader />;
-  }
+  // if (!props.profile) {
+  //   return <Preloader />;
+  // }
   const chosenUser = props.users.filter(user => user.id === props.profile.userId)
   
   return (
@@ -18,8 +18,15 @@ const ProfileInfo = (props) => {
       <div className="card bg-dark m-3">
         <div className="d-flex flex-wrap">
           <div className="">
-            <ProfileAvatarWithName profile={props.profile} authUserId={props.authUserId} savePhoto={props.savePhoto}/>
-            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileAvatarWithName 
+              profile={props.profile} 
+              authUserId={props.authUserId} 
+              savePhoto={props.savePhoto}/>
+            <ProfileStatusWithHooks 
+              profile={props.profile} 
+              authUserId={props.authUserId} 
+              status={props.status} 
+              updateStatus={props.updateStatus}/>
             {chosenUser[0] 
             ? <div className="mx-2 mb-2">
                 <FollowUnfollowButton 

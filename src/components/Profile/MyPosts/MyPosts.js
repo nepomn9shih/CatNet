@@ -1,8 +1,13 @@
 import React from "react";
+import Preloader from "../../Preloader/Preloader";
 import AddPostForm from "./AddPostForm";
 import Post from "./Post/Post";
 
 const MyPosts = React.memo((props) => {
+  // if (!props.profile) {
+  //   return <Preloader />;
+  // }
+  
   const addNewPost = (values) => {
     props.addPost(values.post);
   };

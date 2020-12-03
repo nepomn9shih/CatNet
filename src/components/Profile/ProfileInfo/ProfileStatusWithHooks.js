@@ -25,7 +25,7 @@ useEffect(() => {
     <div className="card m-2 p-2 text-center bg-light">
       {!editMode && (
         <div className="pb-2">
-          <span onDoubleClick={activateEditMode}>
+          <span onDoubleClick={(props.authUserId === props.profile.userId) && activateEditMode}>
             "{props.status || "-----"}"
           </span>
         </div>

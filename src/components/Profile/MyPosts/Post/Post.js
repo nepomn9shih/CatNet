@@ -4,6 +4,7 @@ import "../../Profile.css";
 
 const Post = ({ message, likeCount = 0, profile}) => {
   if (!message) return null
+  console.log(profile)
   return (
     <div className="mb-2 card border-0 bg-dark">
     <div className="d-flex flex-wrap">

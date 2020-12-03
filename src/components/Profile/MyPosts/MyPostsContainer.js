@@ -7,6 +7,7 @@ import MyPosts from "./MyPosts";
 const mapStateToProps = (state) => {
   return {
     postsData: state.profilePage.posts,
+    profile: state.profilePage.profile,
   }
 }
 
