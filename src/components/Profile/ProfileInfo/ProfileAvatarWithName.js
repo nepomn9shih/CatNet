@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import RandomAvatar from "../../RandomAvatar/RandomAvatar";
 import "../Profile.css";
 
 const ProfileAvatarWithName = ({profile, authUserId, savePhoto}) => {
+
+  const [activeChangeAvatar, setActiveChangeAvatar] = useState(false)
+
+  const toggleChangeAvatar = () => {
+    setActiveChangeAvatar(!activeChangeAvatar)
+  }
 
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
@@ -21,7 +27,12 @@ return <div className="card bg-light m-2 profileAvatar">
               ) : (
                 <RandomAvatar userId={profile.userId}/>
               )}
-              {(authUserId === profile.userId) && <input type="file" onChange={onMainPhotoSelected}/>}
+              {(authUserId === profile.userId) && (
+              <div>
+                <button onClick={toggleChangeAvatar} className="btn btn-warning btn-block btn-sm">{activeChangeAvatar ? "Cancel" : "Change avatar"}</button>
+                {activeChangeAvatar && <input type="file" onChange={onMainPhotoSelected}/>}
+              </div>
+              )}
             </div>
 }
 

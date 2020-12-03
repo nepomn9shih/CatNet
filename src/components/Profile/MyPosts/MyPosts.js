@@ -18,6 +18,7 @@ const MyPosts = React.memo((props) => {
             message={post.message}
             likeCount={post.likeCount}
             key={post.id}
+            profile={props.profile}
           />
         ))}
       </div>

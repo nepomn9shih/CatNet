@@ -1,18 +1,23 @@
 import React from "react";
+import RandomAvatar from "../../../RandomAvatar/RandomAvatar";
 import "../../Profile.css";
 
-const Post = ({ message, likeCount = 0}) => {
+const Post = ({ message, likeCount = 0, profile}) => {
   if (!message) return null
   return (
     <div className="mb-2 card border-0 bg-dark">
     <div className="d-flex flex-wrap">
         <div className="list-group list-group-horizontal m-1">
           <div className="postAvatar list-group-item p-1">
-            <img
-              className="rounded"
-              src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cat-face-by-jonathan-fife.jpg"
-              alt="avatar"
-            />
+          {profile.photos.large ? (
+                <img
+                  className="rounded"
+                  src={profile.photos.large}
+                  alt="avatar"
+                />
+              ) : (
+                <RandomAvatar userId={profile.userId}/>
+              )}
           </div>
           <div className="d-flex justify-content-center align-items-center list-group-item p-0 like">
             <span className="p-2"><b>&hearts;{likeCount}</b></span>
