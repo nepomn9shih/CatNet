@@ -1,7 +1,20 @@
 import React from "react";
+import randomAvatar1 from "../../images/randomAvatar1.jpg"
+import randomAvatar2 from "../../images/randomAvatar2.webp"
+import randomAvatar3 from "../../images/randomAvatar3.jpg"
+import randomAvatar4 from "../../images/randomAvatar4.jpg"
+import randomAvatar5 from "../../images/randomAvatar5.jpg"
+import randomAvatar6 from "../../images/randomAvatar6.jpg"
+import randomAvatar7 from "../../images/randomAvatar7.jpg"
+import randomAvatar8 from "../../images/randomAvatar8.jpg"
+import randomAvatar9 from "../../images/randomAvatar9.jpg"
+import randomAvatar0 from "../../images/randomAvatar0.jpg"
 
-const RandomAvatar = (userId) => {
-    let random = Math.ceil(Math.random()*10)
+const RandomAvatar = ({userId}) => {
+  let temp = String(userId)
+  let current = parseInt(temp[temp.length-1])
+  console.log(current)
+  let random = current || Math.ceil(Math.random()*10)
     return (
         <img className="w-100 rounded" src={getRandomAvatar(random)} alt="randomAvatar" />
     )
@@ -10,25 +23,25 @@ const RandomAvatar = (userId) => {
 export const getRandomAvatar = (counter) => {
     switch (counter) {
       case 1:
-        return "https://www.eastbaytimes.com/wp-content/uploads/2018/10/GettyImages-9015747841.jpg?w=620";
+        return randomAvatar1;
       case 2:
-        return "https://images2.minutemediacdn.com/image/upload/c_crop,h_1350,w_2400,x_0,y_303/f_auto,q_auto,w_1100/v1576269707/shape/mentalfloss/610356-gettyimages-1018078858.jpg";
+        return randomAvatar2;
       case 3:
-        return "https://d885f4fd1763c7c53b88-b63a7d70fba6d58f32f6d8cf64fba882.ssl.cf1.rackcdn.com/Cats-1518-1.jpg";
+        return randomAvatar3;
       case 4:
-        return "https://thumbs.dreamstime.com/b/oosterse-cat-big-ears-op-zwarte-ge%C3%AFsoleerde-achtergrond-96766870.jpg";
+        return randomAvatar4;
       case 5:
-        return "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/cat-face-by-jonathan-fife.jpg";
+        return randomAvatar5;
       case 6:
-        return "https://www.womansworld.com/wp-content/uploads/2019/07/silly-cat-face.jpg?w=750";
+        return randomAvatar6;
       case 7:
-        return "https://us.123rf.com/450wm/seregraff/seregraff1706/seregraff170600022/80681959-retrato-de-ginger-cat-con-enormes-ojos-tristes-mirando-la-c%C3%A1mara-sobre-fondo-negro-aislado-vista-front.jpg?ver=6";
+        return randomAvatar7;
       case 8:
-        return "https://thumbs.dreamstime.com/b/retrato-del-primer-del-gato-de-bengala-que-silba-en-fondo-aislado-negro-69777209.jpg";
+        return randomAvatar8;
       case 9:
-        return "https://thumbs.dreamstime.com/b/el-retrato-del-primer-asust%C3%B3-bengala-cat-face-en-fondo-negro-aislado-73630553.jpg";
+        return randomAvatar9;
       default:
-        return "https://render.fineartamerica.com/images/rendered/default/greeting-card/images/artworkimages/medium/2/1-angry-ginger-maine-coon-cat-gazing-on-black-background-sergey-taran.jpg?&targetx=-25&targety=0&imagewidth=750&imageheight=500&modelwidth=700&modelheight=500&backgroundcolor=AD6F33&orientation=0";
+        return randomAvatar0;
     }
   };
 

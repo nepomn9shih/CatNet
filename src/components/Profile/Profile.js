@@ -15,6 +15,7 @@ const Profile = (props) => {
       unfollow={props.unfollow}
       follow={props.follow}
       users={props.users}
+      authUserId={props.authUserId}
       />
       <MyPostsContainer 
       store={props.store} 

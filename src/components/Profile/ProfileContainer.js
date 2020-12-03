@@ -10,8 +10,8 @@ import Profile from "./Profile";
 
 class ProfileContainer extends React.Component {
     
-    componentDidMount() {
-        let userId = this.props.match.params.userId
+refreshProfile = () => {
+    let userId = this.props.match.params.userId
         if (!userId) {
             userId = this.props.authUserId
             if (!userId) {
@@ -20,10 +20,18 @@ class ProfileContainer extends React.Component {
         }
         this.props.getProfileThunkCreator(userId)
         this.props.getStatusThunkCreator(userId)
+}
+
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.match.params.userId === prevProps.match.params.userId) this.refreshProfile()
     }
 
     render() {
-console.log(this.props.followingInProgress)
+
         return (
             <div>
                 <Profile {...this.props} 
@@ -34,6 +42,7 @@ console.log(this.props.followingInProgress)
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
                     users={this.props.users}
+                    authUserId={this.props.authUserId}
                 />
             </div>
         )

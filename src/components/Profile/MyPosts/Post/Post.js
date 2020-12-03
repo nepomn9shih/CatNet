@@ -18,7 +18,7 @@ const Post = ({ message, likeCount = 0}) => {
             <span className="p-2"><b>&hearts;{likeCount}</b></span>
           </div>
         </div>
-      <div className="card overflowHack flex-grow-1 m-1 px-2">
+      <div className="card overflowHack flex-grow-1 m-1 p-2">
         {message}
       </div>
     </div>

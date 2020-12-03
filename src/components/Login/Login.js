@@ -25,7 +25,7 @@ const Login = ({loginThunkCreator, isAuth}) => {
 };
 
 const maxLength20 = maxLengthCreator(20)
-const minLength8 = minLengthCreator(8)
+const minLength4 = minLengthCreator(4)
 
 const LoginForm = ({handleSubmit, error}) => {
     return (
@@ -44,7 +44,7 @@ const LoginForm = ({handleSubmit, error}) => {
               type={"password"} 
               placeholder={"Password"} 
               component={Input}
-              validate={[requiredField, maxLength20, minLength8]}
+              validate={[requiredField, maxLength20, minLength4]}
               />
           </div>
           {error && <div className="formSummaryError">{error}</div>}
