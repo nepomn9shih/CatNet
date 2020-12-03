@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { getProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator} from "../../redux/profileReducer";
+import { getProfileThunkCreator, getStatusThunkCreator, savePhotoThunkCreator, updateStatusThunkCreator} from "../../redux/profileReducer";
 import { followThunkCreator, unfollowThunkCreator } from "../../redux/usersReducer";
 import { getFollowingInProgress, getUsers} from "../../redux/usersSelectors";
 import Profile from "./Profile";
@@ -43,6 +43,7 @@ refreshProfile = () => {
                     follow={this.props.follow}
                     users={this.props.users}
                     authUserId={this.props.authUserId}
+                    savePhoto={this.props.savePhoto}
                 />
             </div>
         )
@@ -63,7 +64,8 @@ const mapDispatchToProps = {
     getStatusThunkCreator,
     updateStatusThunkCreator,
     unfollow: unfollowThunkCreator,
-    follow: followThunkCreator
+    follow: followThunkCreator,
+    savePhoto: savePhotoThunkCreator
 }
 
 export default compose(
