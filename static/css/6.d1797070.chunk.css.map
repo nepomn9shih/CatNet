@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Users/Users.css"],"names":[],"mappings":"AAAA,gBACI,qBAAuB,CACvB,YACJ,CAEA,UACI,eACJ","file":"6.d1797070.chunk.css","sourcesContent":[".userAvatar img{\r\n    width: 200px !important;\r\n    height: 150px;\r\n}\r\n\r\n.userCard {\r\n    max-width: 220px;\r\n}"]}
