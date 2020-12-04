@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RandomAvatar from "../../RandomAvatar/RandomAvatar";
 import "../Profile.css";
 
-const ProfileAvatarWithName = ({ profile, authUserId, savePhoto }) => {
+const ProfileAvatarWithName = ({ profile, isOwner, savePhoto }) => {
   const [activeChangeAvatar, setActiveChangeAvatar] = useState(false);
 
   const toggleChangeAvatar = () => {
@@ -23,13 +23,13 @@ const ProfileAvatarWithName = ({ profile, authUserId, savePhoto }) => {
       ) : (
         <RandomAvatar userId={profile.userId} />
       )}
-      {authUserId === profile.userId && (
+      {isOwner && (
         <div>
           <button
             onClick={toggleChangeAvatar}
             className="btn btn-warning btn-block btn-sm"
           >
-            {activeChangeAvatar ? "Cancel" : "Change avatar"}
+            {activeChangeAvatar ? "CANCEL" : "CHANGE AVATAR"}
           </button>
           {activeChangeAvatar && (
             <input

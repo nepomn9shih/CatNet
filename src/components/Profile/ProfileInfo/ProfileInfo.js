@@ -1,9 +1,9 @@
 import React from "react";
 import Preloader from "../../Preloader/Preloader";
 import FollowUnfollowButton from "../../Users/FollowUnfollowButton";
-import ProfileAboutMe from "./ProfileAboutMe";
 import ProfileAvatarWithName from "./ProfileAvatarWithName";
 import ProfileContacts from "./ProfileContacts";
+
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
@@ -13,6 +13,8 @@ const ProfileInfo = (props) => {
   // }
   const chosenUser = props.users.filter(user => user.id === props.profile.userId)
   
+let isOwner = (props.authUserId === props.profile.userId)
+
   return (
     <div>
       <div className="card bg-dark m-3">
@@ -20,11 +22,11 @@ const ProfileInfo = (props) => {
           <div className="">
             <ProfileAvatarWithName 
               profile={props.profile} 
-              authUserId={props.authUserId} 
+              isOwner={isOwner} 
               savePhoto={props.savePhoto}/>
             <ProfileStatusWithHooks 
               profile={props.profile} 
-              authUserId={props.authUserId} 
+              isOwner={isOwner} 
               status={props.status} 
               updateStatus={props.updateStatus}/>
             {chosenUser[0] 
@@ -39,8 +41,7 @@ const ProfileInfo = (props) => {
             : ""}
           </div>
           <div className="flex-grow-1">
-            <ProfileAboutMe profile={props.profile}/>
-            <ProfileContacts profile={props.profile}/>
+          <ProfileContacts profile={props.profile} isOwner={isOwner}/>
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@ const AddPostForm = (props) => {
             placeholder="Post message"
         />
         <div className="mt-1">
-            <button className="btn btn-sm btn-warning btn-block">Add post</button>
+            <button className="btn btn-sm btn-warning btn-block">ADD POST</button>
         </div>
       </div>
       </div>

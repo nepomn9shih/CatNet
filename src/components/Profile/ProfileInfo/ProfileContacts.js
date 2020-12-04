@@ -1,72 +1,172 @@
 import React, { useState } from "react";
 
-const ProfileContacts = ({profile}) => {
+const ProfileContacts = ({ profile, isOwner }) => {
+  const [seeContacts, setSeeContacts] = useState(true);
 
-const [seeContacts, setSeeContacts] = useState(true);
+  const toggleContacts = () => {
+    setSeeContacts(!seeContacts);
+  };
 
-const toggleContacts = () => {
-  setSeeContacts(!seeContacts)
-}
+  const [editMode, setEditMode] = useState(false)
+  
+  const setEditModeOn = () => {
+    setEditMode(true)
+  }
+  const setEditModeOff = () => {
+    setEditMode(false)
+  }
+  
+  const Contact = ({ contactTitle, contactValue }) => {
+    return (
+      <p className="card-text">
+        <b>{contactTitle}:</b>{" "}
+        <a href={contactValue}>{contactValue || "пока нет"}</a>
+      </p>
+    );
+  };
 
-return <div className="card bg-light m-2">
-              <div className="card-header d-flex justify-content-between align-items-center">
-                <h5 >Контакты:</h5>
-                <button className="btn btn-sm btn-warning" onClick={toggleContacts}>
-                  {seeContacts ? <b>&#9650;</b> : <b>&#9660;</b>}
-                </button>
-              </div>
-              {seeContacts && <div className="card-body">
-                <p className="card-text">
-                  <b>Facebook:</b>{" "}
-                  <a href={profile.contacts.facebook}>
-                    {profile.contacts.facebook || "пока нет"}
-                  </a>
-                </p>
-                <p className="card-text">
-                  <b>Сайт:</b>{" "}
-                  <a href={profile.contacts.website}>
-                    {profile.contacts.website || "пока нет"}
-                  </a>
-                </p>
-                <p className="card-text">
-                  <b>Вконтакте:</b>{" "}
-                  <a href={profile.contacts.vk}>
-                    {profile.contacts.vk || "пока нет"}
-                  </a>
-                </p>
-                <p className="card-text">
-                  <b>Twitter:</b>{" "}
-                  <a href={profile.contacts.twitter}>
-                    {profile.contacts.twitter || "пока нет"}
-                  </a>
-                </p>
-                <p className="card-text">
-                  <b>Instagram:</b>{" "}
-                  <a href={profile.contacts.instagram}>
-                    {profile.contacts.instagram || "пока нет"}
-                  </a>
-                </p>
-                <p className="card-text">
-                  <b>GitHub:</b>{" "}
-                  <a href={profile.contacts.github}>
-                    {profile.contacts.github || "пока нет"}
-                  </a>
-                </p>
-                <p className="card-text">
-                  <b>YouTube:</b>{" "}
-                  <a href={profile.contacts.youtube}>
-                    {profile.contacts.youtube || "пока нет"}
-                  </a>
-                </p>
-                <p className="card-text">
-                  <b>mainLink:</b>{" "}
-                  <a href={profile.contacts.mainLink}>
-                    {profile.contacts.mainLink || "пока нет"}
-                  </a>
-                </p>
-              </div>}
-            </div>
-            
-            }
+  const ContactsNoEdit = ({profile, setEditModeOn, isOwner}) => {
+  return (
+    <div>
+      <div className="card bg-light m-2">
+      <div className="card-header d-flex justify-content-between align-items-center">
+          <h5>Обо мне:</h5>
+          {isOwner && <button className="btn btn-sm btn-warning" onClick={setEditModeOn}>
+            <b>EDIT</b>
+          </button>}
+        </div>
+        <div className="card-body">
+          <p className="card-text">"{profile.aboutMe}"</p>
+          <hr />
+          <div className="card-text">
+            <b>Ищу работу:</b> {profile.lookingForAJob ? "Да" : "Нет"}
+          </div>
+          {profile.lookingForAJobDescription && (
+            <div>{profile.lookingForAJobDescription}</div>
+          )}
+        </div>
+      </div>
+      <div className="card bg-light m-2">
+        <div className="card-header d-flex justify-content-between align-items-center">
+          <h5>Контакты:</h5>
+          <button className="btn btn-sm btn-warning" onClick={toggleContacts}>
+            {seeContacts ? <b>&#9650;</b> : <b>&#9660;</b>}
+          </button>
+        </div>
+        {seeContacts && (
+          <div className="card-body">
+            <Contact
+              contactTitle={"Facebook"}
+              contactValue={profile.contacts.facebook}
+            />
+            <Contact
+              contactTitle={"Сайт"}
+              contactValue={profile.contacts.website}
+            />
+            <Contact
+              contactTitle={"Вконтакте"}
+              contactValue={profile.contacts.vk}
+            />
+            <Contact
+              contactTitle={"Twitter"}
+              contactValue={profile.contacts.twitter}
+            />
+            <Contact
+              contactTitle={"Instagram"}
+              contactValue={profile.contacts.instagram}
+            />
+            <Contact
+              contactTitle={"GitHub"}
+              contactValue={profile.contacts.github}
+            />
+            <Contact
+              contactTitle={"YouTube"}
+              contactValue={profile.contacts.youtube}
+            />
+            <Contact
+              contactTitle={"mainLink"}
+              contactValue={profile.contacts.mainLink}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );}
 
-            export default ProfileContacts
+  const ContactsEdit = ({profile, setEditModeOff, isOwner}) => {
+    return <div>
+    <div className="card bg-light m-2">
+    <div className="card-header d-flex justify-content-between align-items-center">
+        <h5>Обо мне:</h5>
+        {isOwner && <button className="btn btn-sm btn-warning" onClick={setEditModeOff}>
+          <b>CANCEL</b>
+        </button>}
+      </div>
+      <div className="card-body">
+        <p className="card-text">"{profile.aboutMe}"</p>
+        <hr />
+        <div className="card-text">
+          <b>Ищу работу:</b> {profile.lookingForAJob ? "Да" : "Нет"}
+        </div>
+        {profile.lookingForAJobDescription && (
+          <div>{profile.lookingForAJobDescription}</div>
+        )}
+      </div>
+    </div>
+    <div className="card bg-light m-2">
+      <div className="card-header d-flex justify-content-between align-items-center">
+        <h5>Контакты:</h5>
+        <button className="btn btn-sm btn-warning" onClick={toggleContacts}>
+          {seeContacts ? <b>&#9650;</b> : <b>&#9660;</b>}
+        </button>
+      </div>
+      {seeContacts && (
+        <div className="card-body">
+          <Contact
+            contactTitle={"Facebook"}
+            contactValue={profile.contacts.facebook}
+          />
+          <Contact
+            contactTitle={"Сайт"}
+            contactValue={profile.contacts.website}
+          />
+          <Contact
+            contactTitle={"Вконтакте"}
+            contactValue={profile.contacts.vk}
+          />
+          <Contact
+            contactTitle={"Twitter"}
+            contactValue={profile.contacts.twitter}
+          />
+          <Contact
+            contactTitle={"Instagram"}
+            contactValue={profile.contacts.instagram}
+          />
+          <Contact
+            contactTitle={"GitHub"}
+            contactValue={profile.contacts.github}
+          />
+          <Contact
+            contactTitle={"YouTube"}
+            contactValue={profile.contacts.youtube}
+          />
+          <Contact
+            contactTitle={"mainLink"}
+            contactValue={profile.contacts.mainLink}
+          />
+        </div>
+      )}
+    </div>
+  </div>
+  }
+
+  return <div>
+  {editMode
+    ? <ContactsEdit profile={profile} setEditModeOff={setEditModeOff} isOwner={isOwner}/>
+    : <ContactsNoEdit profile={profile} setEditModeOn={setEditModeOn} isOwner={isOwner}/>
+  }
+  </div>
+};
+
+export default ProfileContacts;
+
