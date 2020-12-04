@@ -13,7 +13,7 @@ import randomAvatar0 from "../../images/randomAvatar0.jpg"
 const RandomAvatar = ({userId}) => {
   let temp = String(userId)
   let current = parseInt(temp[temp.length-1])
-  console.log(current)
+  
   let random = current || Math.ceil(Math.random()*10)
     return (
         <img className="w-100 rounded" src={getRandomAvatar(random)} alt="randomAvatar" />

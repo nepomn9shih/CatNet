@@ -10,8 +10,6 @@ const Users = ({
   follow, unfollow, users, isFetching
 }) => {
 
-  let avatarCounter = 0;
-
   return (
     <div>
       <div className="mx-4 my-2 text-center d-flex justify-content-center align-items-center flex-wrap">
@@ -26,15 +24,12 @@ const Users = ({
       {isFetching ? <Preloader /> : null}
       <div className="d-flex flex-wrap justify-content-around p-2">
         {users.map((user) => {
-          avatarCounter++;
-          if (avatarCounter > 9) avatarCounter = 0;
           return (
             <User 
               user={user} 
               followingInProgress={followingInProgress} 
               follow={follow} 
               unfollow={unfollow}
-              avatarCounter={avatarCounter}
             />
           );
         })}

@@ -1,21 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { getRandomAvatar } from "../RandomAvatar/RandomAvatar";
+import RandomAvatar, { getRandomAvatar } from "../RandomAvatar/RandomAvatar";
 import FollowUnfollowButton from "./FollowUnfollowButton";
 import "./Users.css";
 
-const User = ({user, followingInProgress, follow, unfollow, avatarCounter}) => {
+const User = ({user, followingInProgress, follow, unfollow}) => {
   
   return (
-    <div className="mb-3 p-2 card text-center" key={user.id}>
+    <div className="mb-3 p-2 card text-center userCard" key={user.id}>
       <div className="">
-        <div className="card bg-dark">
+        <div className="card bg-dark userAvatar">
           <NavLink to={"/profile/" + user.id}>
-            <img
-              className="card-img userAvatar"
-              src={user.photos.small || getRandomAvatar(avatarCounter)}
+            {user.photos.small 
+            ? <img
+              className="card-img"
+              src={user.photos.small}
               alt="avatar"
             />
+            : <RandomAvatar userId={user.id}/>}
           </NavLink>
           <div className="d-flex justify-content-between">
             <span className="badge text-white p-3">ID: {user.id}</span>
