@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const ProfileStatusWithHooks = (props) => {
+const ProfileStatusWithHooks = React.memo((props) => {
   let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
 
@@ -42,6 +42,6 @@ useEffect(() => {
       )}
     </div>
   );
-};
+});
 
 export default ProfileStatusWithHooks;

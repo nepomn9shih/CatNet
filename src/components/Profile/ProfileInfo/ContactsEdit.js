@@ -1,5 +1,4 @@
 import { Field, reduxForm } from "redux-form";
-import Contact from "./Contact";
 import { Textarea, Input, CheckBox } from "../../FormsControls/FormsControls";
 import { requiredField } from "../../../utils/validators";
 
@@ -9,6 +8,7 @@ const ContactsEdit = ({
   isOwner,
   toggleContacts,
   seeContacts,
+  handleSubmit
 }) => {
 
   const ContactEdit = ({name, validate, placeholder}) => {
@@ -29,7 +29,7 @@ const ContactsEdit = ({
   };
 
   return (
-    <form>
+    
       <div className="card bg-secondary m-2">
         <div className="card-header d-flex justify-content-between align-items-center">
           <h5>Обо мне:</h5>
@@ -39,6 +39,7 @@ const ContactsEdit = ({
             </button>
           )}
         </div>
+        <form onSubmit={handleSubmit}>
         <div className="card-body">
           <Field
             name={"aboutMe"}
@@ -49,6 +50,16 @@ const ContactsEdit = ({
           />
           <hr />
           <div className="card-text mb-2">
+            <div>
+              <b>Полное имя: </b>
+              <Field
+            name={"fullName"}
+            component={Input}
+            className="form-control"
+            validate={[requiredField]}
+            placeholder="Full name"
+          />
+            </div>
             <div className="d-flex align-items-center mb-2">
               <b>Ищу работу:</b>
               <Field
@@ -66,33 +77,26 @@ const ContactsEdit = ({
             placeholder="Looking for a job description"
           />
         </div>
-      </div>
-      <div className="card bg-secondary m-2">
         <div className="card-header d-flex justify-content-between align-items-center">
           <h5>Контакты:</h5>
-          <button className="btn btn-sm btn-warning" onClick={toggleContacts}>
-            {seeContacts ? <b>&#9650;</b> : <b>&#9660;</b>}
-          </button>
         </div>
-        {seeContacts && (
           <div className="card-body">
-          <ContactEdit name={"facebook"} validate={[requiredField]} placeholder={"Facebook"}/>
-          <ContactEdit name={"website"} validate={[requiredField]} placeholder={"Website"}/>
-          <ContactEdit name={"vk"} validate={[requiredField]} placeholder={"Вконтакте"}/>
-          <ContactEdit name={"twitter"} validate={[requiredField]} placeholder={"Twitter"}/>
-          <ContactEdit name={"instagram"} validate={[requiredField]} placeholder={"Instagram"}/>
-          <ContactEdit name={"github"} validate={[requiredField]} placeholder={"GitHub"}/>
-          <ContactEdit name={"youtube"} validate={[requiredField]} placeholder={"YouTube"}/>
-          <ContactEdit name={"mainLink"} validate={[requiredField]} placeholder={"mainLink"}/>
+          <ContactEdit name={"contacts.facebook"} validate={[]} placeholder={"Facebook"}/>
+          <ContactEdit name={"contacts.website"} validate={[]} placeholder={"Website"}/>
+          <ContactEdit name={"contacts.vk"} validate={[]} placeholder={"Вконтакте"}/>
+          <ContactEdit name={"contacts.twitter"} validate={[]} placeholder={"Twitter"}/>
+          <ContactEdit name={"contacts.instagram"} validate={[]} placeholder={"Instagram"}/>
+          <ContactEdit name={"contacts.github"} validate={[]} placeholder={"GitHub"}/>
+          <ContactEdit name={"contacts.youtube"} validate={[]} placeholder={"YouTube"}/>
+          <ContactEdit name={"contacts.mainLink"} validate={[]} placeholder={"mainLink"}/>
           </div>
-        )}
         {isOwner && (
-          <button className="btn btn-sm btn-warning" onClick={() => {}}>
+          <button className="btn btn-sm btn-warning btn-block">
             <b>SAVE</b>
           </button>
         )}
+        </form>
       </div>
-    </form>
   );
 };
 

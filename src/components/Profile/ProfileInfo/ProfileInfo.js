@@ -41,7 +41,7 @@ let isOwner = (props.authUserId === props.profile.userId)
             : ""}
           </div>
           <div className="flex-grow-1">
-          <ProfileContacts profile={props.profile} isOwner={isOwner}/>
+          <ProfileContacts profile={props.profile} isOwner={isOwner} saveProfile={props.saveProfile}/>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ContactsEdit from "./ContactsEdit";
 import ContactsNoEdit from "./ContactsNoEdit";
 
-const ProfileContacts = ({ profile, isOwner }) => {
+const ProfileContacts = ({ profile, isOwner, saveProfile }) => {
   const [seeContacts, setSeeContacts] = useState(true);
 
   const toggleContacts = () => {
@@ -17,10 +17,14 @@ const ProfileContacts = ({ profile, isOwner }) => {
   const setEditModeOff = () => {
     setEditMode(false)
   }
-  
+
+  const onSubmit = (formData) => {
+    saveProfile(formData)
+  }
+
   return <div>
   {editMode
-    ? <ContactsEdit profile={profile} setEditModeOff={setEditModeOff} isOwner={isOwner} toggleContacts={toggleContacts} seeContacts={seeContacts}/>
+    ? <ContactsEdit profile={profile} setEditModeOff={setEditModeOff} isOwner={isOwner} toggleContacts={toggleContacts} seeContacts={seeContacts} onSubmit={onSubmit}/>
     : <ContactsNoEdit profile={profile} setEditModeOn={setEditModeOn} isOwner={isOwner} toggleContacts={toggleContacts} seeContacts={seeContacts}/>
   }
   </div>

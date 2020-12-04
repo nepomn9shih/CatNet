@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Preloader from "../../Preloader/Preloader";
 import RandomAvatar from "../../RandomAvatar/RandomAvatar";
 import "../Profile.css";
 
@@ -14,6 +15,10 @@ const ProfileAvatarWithName = ({ profile, isOwner, savePhoto }) => {
       savePhoto(e.target.files[0]);
     }
   };
+
+  if (!profile) {
+      return <Preloader />;
+    }
 
   return (
     <div className="card bg-light m-2 profileAvatar">

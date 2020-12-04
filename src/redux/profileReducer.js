@@ -5,6 +5,7 @@ const SET_USER_PROFILE = "SET_USER_PROFILE"
 const SET_STATUS = "SET_STATUS"
 const DELETE_POST = "DELETE_POST";
 const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS"
+const SAVE_PROFILE_SUCCESS = "SAVE_PROFILE_SUCCESS"
 
 let initialState = {
   posts: [
@@ -54,6 +55,12 @@ const profileReducer = (state = initialState, action) => {
         profile: {...state.profile, photos: action.photos}
       };
     }
+    case SAVE_PROFILE_SUCCESS: {
+      return {
+        ...state,
+        profile: action.profile
+      };
+    }
     default:
       return state;
   }
@@ -81,6 +88,12 @@ export const savePhotoSuccessAC = (photos) => ({
   photos
 })
 
+export const saveProfileSuccessAC = (profile) => ({
+  type: SAVE_PROFILE_SUCCESS,
+  profile
+})
+
+
 export const getProfileThunkCreator = (userId) => async (dispatch) => {
   const data = await profileAPI.getProfile(userId)
   dispatch(setUserProfileAC(data));   
@@ -102,6 +115,13 @@ export const savePhotoThunkCreator = (photo) => async (dispatch) => {
   const data = await profileAPI.savePhoto(photo)
   if (data.resultCode === 0) {
     dispatch(savePhotoSuccessAC(data.data.photos));
+  }  
+}
+
+export const saveProfileThunkCreator = (profile) => async (dispatch) => {
+  const data = await profileAPI.saveProfile(profile)
+  if (data.resultCode === 0) {
+    dispatch(saveProfileSuccessAC(data.data));
   }  
 }
 

@@ -19,6 +19,11 @@
   overflow: auto;
 }
 
+.overflowHack2{
+  overflow: hidden;
+  word-break: break-word
+}
+
 .row {
   margin: 0px !important;
 }
