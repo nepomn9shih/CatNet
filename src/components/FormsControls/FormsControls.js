@@ -24,3 +24,8 @@ export const Input = (props) => {
     const {input, meta, child, ...restProps} = props
     return <FormControl {...props}><input {...input} {...restProps}/></FormControl>   
 }
+
+export const CheckBox = (props) => {
+    const {input, meta, child, ...restProps} = props
+    return <FormControl {...props}><input type="checkbox" {...input} {...restProps}/></FormControl>   
+}

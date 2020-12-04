@@ -29,7 +29,7 @@ const ProfileAvatarWithName = ({ profile, isOwner, savePhoto }) => {
             onClick={toggleChangeAvatar}
             className="btn btn-warning btn-block btn-sm"
           >
-            {activeChangeAvatar ? "CANCEL" : "CHANGE AVATAR"}
+            <b>{activeChangeAvatar ? "CANCEL" : "CHANGE AVATAR"}</b>
           </button>
           {activeChangeAvatar && (
             <input

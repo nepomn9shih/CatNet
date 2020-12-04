@@ -21,7 +21,7 @@ const SendMessageForm = (props) => {
                         />
                         <div className="mt-1">
                             <button className="btn btn-sm btn-warning btn-block">
-                            ADD MESSAGE
+                            <b>ADD MESSAGE</b>
                             </button>
                         </div>
                     </div>
