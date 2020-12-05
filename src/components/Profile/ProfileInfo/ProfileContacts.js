@@ -20,11 +20,12 @@ const ProfileContacts = ({ profile, isOwner, saveProfile }) => {
 
   const onSubmit = (formData) => {
     saveProfile(formData)
+    setEditMode(false)
   }
 
   return <div>
   {editMode
-    ? <ContactsEdit profile={profile} setEditModeOff={setEditModeOff} isOwner={isOwner} toggleContacts={toggleContacts} seeContacts={seeContacts} onSubmit={onSubmit}/>
+    ? <ContactsEdit initialValues={profile} setEditModeOff={setEditModeOff} isOwner={isOwner} onSubmit={onSubmit}/>
     : <ContactsNoEdit profile={profile} setEditModeOn={setEditModeOn} isOwner={isOwner} toggleContacts={toggleContacts} seeContacts={seeContacts}/>
   }
   </div>

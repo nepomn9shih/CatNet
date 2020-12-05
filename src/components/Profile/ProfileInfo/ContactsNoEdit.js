@@ -17,7 +17,7 @@ const ContactsNoEdit = ({profile, setEditModeOn, isOwner, toggleContacts, seeCon
               <b>Ищу работу:</b> {profile.lookingForAJob ? "Да" : "Нет"}
             </div>
             {profile.lookingForAJobDescription && (
-              <div>{profile.lookingForAJobDescription}</div>
+              <div className="mt-2">{profile.lookingForAJobDescription}</div>
             )}
           </div>
         </div>

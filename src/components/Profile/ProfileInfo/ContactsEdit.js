@@ -3,11 +3,8 @@ import { Textarea, Input, CheckBox } from "../../FormsControls/FormsControls";
 import { requiredField } from "../../../utils/validators";
 
 const ContactsEdit = ({
-  profile,
   setEditModeOff,
   isOwner,
-  toggleContacts,
-  seeContacts,
   handleSubmit
 }) => {
 
@@ -55,10 +52,11 @@ const ContactsEdit = ({
               <Field
             name={"fullName"}
             component={Input}
-            className="form-control"
+            className="form-control mt-2"
             validate={[requiredField]}
             placeholder="Full name"
           />
+          <hr />
             </div>
             <div className="d-flex align-items-center mb-2">
               <b>Ищу работу:</b>
