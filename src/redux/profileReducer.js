@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../API/api";
 
 const ADD_POST = "ADD_POST";
@@ -110,7 +111,9 @@ export const saveProfileThunkCreator = (profile) => async (dispatch, getState) =
   const data = await profileAPI.saveProfile(profile)
   if (data.resultCode === 0) {
     dispatch(getProfileThunkCreator(userId));
-  }  
+  }  else {
+    dispatch(stopSubmit("editContacts", {_error: data.messages[0]}))
+  }
 }
 
 export default profileReducer;

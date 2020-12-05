@@ -20,7 +20,7 @@ const ProfileContacts = ({ profile, isOwner, saveProfile }) => {
 
   const onSubmit = (formData) => {
     saveProfile(formData)
-    setEditMode(false)
+    // setEditMode(false)
   }
 
   return <div>

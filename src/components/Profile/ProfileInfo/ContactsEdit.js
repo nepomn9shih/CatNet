@@ -1,13 +1,16 @@
+import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Textarea, Input, CheckBox } from "../../FormsControls/FormsControls";
 import { requiredField } from "../../../utils/validators";
+import '../../FormsControls/FormsControls.css'
 
-const ContactsEdit = ({
+const ContactsEdit = React.memo(({
   setEditModeOff,
   isOwner,
-  handleSubmit
+  handleSubmit,
+  error
 }) => {
-
+console.log(error)
   const ContactEdit = ({name, validate, placeholder}) => {
     return (
       <div className="d-flex justify-content-between align-items-center mb-2">
@@ -88,6 +91,7 @@ const ContactsEdit = ({
           <ContactEdit name={"contacts.youtube"} validate={[]} placeholder={"YouTube"}/>
           <ContactEdit name={"contacts.mainLink"} validate={[]} placeholder={"mainLink"}/>
           </div>
+          {error && <div className="formSummaryError">{error}</div>}
         {isOwner && (
           <button className="btn btn-sm btn-warning btn-block">
             <b>SAVE</b>
@@ -96,6 +100,7 @@ const ContactsEdit = ({
         </form>
       </div>
   );
-};
+})
+;
 
 export default reduxForm({ form: "editContacts" })(ContactsEdit);

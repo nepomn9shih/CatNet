@@ -6,7 +6,7 @@ import ProfileContacts from "./ProfileContacts";
 
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
+const ProfileInfo = React.memo((props) => {
   
   // if (!props.profile) {
   //   return <Preloader />;
@@ -47,6 +47,6 @@ let isOwner = (props.authUserId === props.profile.userId)
       </div>
     </div>
   );
-};
+});
 
 export default ProfileInfo;
