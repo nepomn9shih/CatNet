@@ -2,7 +2,7 @@ import React from "react";
 import RandomAvatar from "../../../RandomAvatar/RandomAvatar";
 import "../../Profile.css";
 
-const Post = ({ message, likeCount = 0, profile}) => {
+const Post = ({ message, likeCount = 0, profile, deletePost, postId}) => {
   if (!message) return null
   
   return (
@@ -26,6 +26,9 @@ const Post = ({ message, likeCount = 0, profile}) => {
         </div>
       <div className="card overflowHack flex-grow-1 m-1 p-2">
         {message}
+      </div>
+      <div>
+        <button onClick={() => {deletePost(postId)}} className="btn btn-sm btn-warning m-1 mr-2 p-2">&#128465;</button>
       </div>
     </div>
     </div>

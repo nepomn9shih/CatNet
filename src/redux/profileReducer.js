@@ -22,7 +22,7 @@ const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
-        id: state.posts[state.posts.length-1].id + 1,
+        id: state.posts.length ? state.posts[state.posts.length-1].id + 1 : 0,
         message: action.newPostText,
         likeCount: 0,
       };
@@ -44,6 +44,7 @@ const profileReducer = (state = initialState, action) => {
       };
     }
     case DELETE_POST: {
+      console.log("delete post")
       return {
         ...state,
         posts: state.posts.filter(p => p.id !== action.postId),
