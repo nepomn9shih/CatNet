@@ -57,7 +57,7 @@ class App extends React.Component {
             render={withSuspense(ProfileContainer)}
           />
           <Route
-            path="/dialogs"
+            path="/dialogs/:dialogId?"
             render={withSuspense(DialogsContainer)}
           />
           <Route path="/news" component={News} />

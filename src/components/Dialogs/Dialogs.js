@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import "./Dialogs.css";
 import Message from "./Message/Message";
@@ -14,28 +15,39 @@ const Dialogs = (props) => {
     <div className="row">
       <div className="col-4 col-md-3">
         <div className="card bg-dark p-2 m-2">
-          {props.messagesPage.dialogs.map((dialog) => (
-            <DialogItem
+          {props.messagesPage.dialogs.map((dialog) => {
+            
+            return <DialogItem
               name={dialog.name}
               id={dialog.id}
-              userAvatar={dialog.userAvatar}
               key={dialog.id}
-            />
-          ))}
+              setActiveDialog={props.setActiveDialog}
+            />}
+          )}
           <button className="btn btn-warning btn-sm">***</button>
         </div>
       </div>
       <div className="col">
-        <div className="list-group m-2">
-          <div className="list-group-item">
-            {props.messagesPage.messages.map((message) => (
-              <Message text={message.message} key={message.id} />
-            ))}
-          </div>
-          <SendMessageForm 
-          onSubmit={addNewMessage}  
-          />
-        </div>
+        <Route path="/dialogs/:dialogId"
+            render={ () => {
+              let userId = props.match.params.dialogId
+              let currentUserMessages = props.messagesPage.dialogs.filter((dialog) => {return +dialog.id === +userId})
+              return <div className="list-group m-2">
+                <div className="list-group-item text-center bg-secondary">
+                  <b>{currentUserMessages[0].name}</b>
+                </div>
+                <div className="list-group-item">
+                  {currentUserMessages[0].messages.map((message) => (
+                    <Message text={message.message} key={message.id} />
+                  ))}
+                </div>
+                <SendMessageForm 
+                  onSubmit={addNewMessage}  
+                />
+              </div>
+            }
+          }
+        />
       </div>
     </div>
   );

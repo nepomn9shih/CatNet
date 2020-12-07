@@ -26,6 +26,7 @@ const Users = ({
         {users.map((user) => {
           return (
             <User 
+              key={user.id}
               user={user} 
               followingInProgress={followingInProgress} 
               follow={follow} 

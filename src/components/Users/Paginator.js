@@ -25,6 +25,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
         return (
           <button
             type="button"
+            key={page}
             onClick={() => {
               onPageChanged(page);
             }}
