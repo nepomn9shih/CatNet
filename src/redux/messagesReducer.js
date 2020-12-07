@@ -42,20 +42,27 @@ let initialState = {
         ]
     },
   ],
-  activeDialog: null
+  activeDialog: null,
 };
+
+const getIndexOfActiveDialog = (state) => {
+for (let i = 0; i < state.dialogs.length; i++) {
+  if (+state.dialogs[i].id === +state.activeDialog) return i
+}
+return -1
+}
 
 const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MESSAGE: {
+      let newState = JSON.parse(JSON.stringify(state))
+      let index = getIndexOfActiveDialog(newState)
       let newMessage = {
-        id: state.messages.length + 1,
+        id: state.dialogs[index].messages.length + 1,
         message: action.newMessageBody,
       };
-      return {
-        ...state,
-        messages: [...state.messages, newMessage]
-      };
+      newState.dialogs[index].messages.push(newMessage)
+      return newState
     }
     case SET_ACTIVE_DIALOG: {
       return {
@@ -68,7 +75,7 @@ const messagesReducer = (state = initialState, action) => {
   }
 };
 
-export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody });
+export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody});
 
 export const setActiveDialogAC = (activeDialogNumber) => ({ type: SET_ACTIVE_DIALOG, activeDialogNumber });
 

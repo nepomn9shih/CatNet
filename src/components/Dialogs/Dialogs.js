@@ -22,6 +22,7 @@ const Dialogs = (props) => {
               id={dialog.id}
               key={dialog.id}
               setActiveDialog={props.setActiveDialog}
+              activeDialog={props.messagesPage.activeDialog}
             />}
           )}
           <button className="btn btn-warning btn-sm">***</button>
@@ -33,7 +34,7 @@ const Dialogs = (props) => {
               let userId = props.match.params.dialogId
               let currentUserMessages = props.messagesPage.dialogs.filter((dialog) => {return +dialog.id === +userId})
               return <div className="list-group m-2">
-                <div className="list-group-item text-center bg-secondary">
+                <div className="list-group-item text-center bg-light">
                   <b>{currentUserMessages[0].name}</b>
                 </div>
                 <div className="list-group-item">

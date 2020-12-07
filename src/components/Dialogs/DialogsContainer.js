@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     sendMessage: (newMessageBody) => {
       dispatch(sendMessageCreator(newMessageBody))
     },
-    setActiveDialogAC: (activeDialogNumber) => {
+    setActiveDialog: (activeDialogNumber) => {
       dispatch(setActiveDialogAC(activeDialogNumber))
     }
   }  

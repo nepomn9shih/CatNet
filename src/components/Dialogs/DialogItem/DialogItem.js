@@ -3,14 +3,14 @@ import { NavLink } from "react-router-dom";
 import RandomAvatar from "../../RandomAvatar/RandomAvatar";
 import "./DialogItem.css";
 
-const DialogItem = ({ name, id, setActiveDialog}) => {
+const DialogItem = ({ name, id, setActiveDialog, activeDialog}) => {
   
   return (
     <div className="dialog mb-2">
-      <NavLink onClick={setActiveDialog} to={"/dialogs/" + id}>
-        <div className="card bg-light">
+      <NavLink onClick={() => {setActiveDialog(id)}} to={"/dialogs/" + id}>
+        <div className={(+activeDialog === +id) ? "card bg-light" :"card bg-secondary"}>
           <div className="d-flex justify-content-around flex-wrap">
-            <div className="">
+            <div className="p-1">
               <RandomAvatar userId={id}/>
             </div>
             <div className="p-2">
