@@ -4,6 +4,7 @@ import RandomAvatar from "../../RandomAvatar/RandomAvatar";
 import "../Profile.css";
 
 const ProfileAvatarWithName = ({ profile, isOwner, savePhoto }) => {
+  console.log("render ProfileAvatarWithName")
   const [activeChangeAvatar, setActiveChangeAvatar] = useState(false);
 
   const toggleChangeAvatar = () => {

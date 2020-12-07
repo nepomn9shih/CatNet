@@ -83,16 +83,19 @@ export const savePhotoSuccessAC = (photos) => ({
 })
 
 export const getProfileThunkCreator = (userId) => async (dispatch) => {
+  console.log("GetProfileThunkCreator")
   const data = await profileAPI.getProfile(userId)
   dispatch(setUserProfileAC(data));   
 }
 
 export const getStatusThunkCreator = (userId) => async (dispatch) => {
+  console.log("GetStatusThunkCreator")
   const data = await profileAPI.getStatus(userId)
   dispatch(setStatusAC(data));
 }
 
 export const updateStatusThunkCreator = (status) => async (dispatch) => {
+  console.log("UpdateStatusThunkCreator")
   const data = await profileAPI.updateStatus(status)
   if (data.resultCode === 0) {
     dispatch(setStatusAC(status));
@@ -100,6 +103,7 @@ export const updateStatusThunkCreator = (status) => async (dispatch) => {
 }
 
 export const savePhotoThunkCreator = (photo) => async (dispatch) => {
+  console.log("SavePhotoThunkCreator")
   const data = await profileAPI.savePhoto(photo)
   if (data.resultCode === 0) {
     dispatch(savePhotoSuccessAC(data.data.photos));
@@ -107,12 +111,14 @@ export const savePhotoThunkCreator = (photo) => async (dispatch) => {
 }
 
 export const saveProfileThunkCreator = (profile) => async (dispatch, getState) => {
+  console.log("SaveProfileThunkCreator")
   const userId = getState().auth.userId
   const data = await profileAPI.saveProfile(profile)
   if (data.resultCode === 0) {
     dispatch(getProfileThunkCreator(userId));
   }  else {
     dispatch(stopSubmit("editContacts", {_error: data.messages[0]}))
+    return Promise.reject(data.messages[0])
   }
 }
 

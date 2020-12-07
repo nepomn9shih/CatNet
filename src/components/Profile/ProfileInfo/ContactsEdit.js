@@ -4,13 +4,14 @@ import { Textarea, Input, CheckBox } from "../../FormsControls/FormsControls";
 import { requiredField } from "../../../utils/validators";
 import '../../FormsControls/FormsControls.css'
 
-const ContactsEdit = React.memo(({
+const ContactsEdit = ({
   setEditModeOff,
-  isOwner,
   handleSubmit,
-  error
+  saveContactsError
 }) => {
-console.log(error)
+
+console.log("render ContactsEdit")
+
   const ContactEdit = ({name, validate, placeholder}) => {
     return (
       <div className="d-flex justify-content-between align-items-center mb-2">
@@ -33,11 +34,11 @@ console.log(error)
       <div className="card bg-secondary m-2">
         <div className="card-header d-flex justify-content-between align-items-center">
           <h5>Обо мне:</h5>
-          {isOwner && (
+          
             <button className="btn btn-sm btn-warning" onClick={setEditModeOff}>
               <b>CANCEL</b>
             </button>
-          )}
+          
         </div>
         <form onSubmit={handleSubmit}>
         <div className="card-body">
@@ -90,17 +91,14 @@ console.log(error)
           <ContactEdit name={"contacts.github"} validate={[]} placeholder={"GitHub"}/>
           <ContactEdit name={"contacts.youtube"} validate={[]} placeholder={"YouTube"}/>
           <ContactEdit name={"contacts.mainLink"} validate={[]} placeholder={"mainLink"}/>
-          </div>
-          {error && <div className="formSummaryError">{error}</div>}
-        {isOwner && (
+          {saveContactsError && <div className="formSummaryError text-center card-text">{saveContactsError}</div>}
           <button className="btn btn-sm btn-warning btn-block">
             <b>SAVE</b>
           </button>
-        )}
+        </div>
         </form>
       </div>
   );
-})
-;
+};
 
 export default reduxForm({ form: "editContacts" })(ContactsEdit);

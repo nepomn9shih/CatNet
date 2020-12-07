@@ -1,5 +1,5 @@
 import React from "react";
-import Preloader from "../../Preloader/Preloader";
+// import Preloader from "../../Preloader/Preloader";
 import FollowUnfollowButton from "../../Users/FollowUnfollowButton";
 import ProfileAvatarWithName from "./ProfileAvatarWithName";
 import ProfileContacts from "./ProfileContacts";
@@ -7,13 +7,13 @@ import ProfileContacts from "./ProfileContacts";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = React.memo((props) => {
-  
+  console.log("render ProfileInfo")
   // if (!props.profile) {
   //   return <Preloader />;
   // }
   const chosenUser = props.users.filter(user => user.id === props.profile.userId)
   
-let isOwner = (props.authUserId === props.profile.userId)
+  let isOwner = (props.authUserId === props.profile.userId)
 
   return (
     <div>

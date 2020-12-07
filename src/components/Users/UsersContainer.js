@@ -8,7 +8,6 @@ import {
   unfollowThunkCreator
 } from "../../redux/usersReducer";
 import Users from "./Users";
-import Preloader from "../Preloader/Preloader";
 import { 
   getPageSize, 
   getUsers, 

@@ -1,6 +1,7 @@
 import Contact from "./Contact";
 
 const ContactsNoEdit = ({profile, setEditModeOn, isOwner, toggleContacts, seeContacts}) => {
+  console.log("render ContactsNoEdit")
     return (
       <div>
         <div className="card bg-light m-2">

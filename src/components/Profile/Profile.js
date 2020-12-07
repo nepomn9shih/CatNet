@@ -5,6 +5,7 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = React.memo((props) => {
+  console.log("render Profile")
   if (!props.profile) {
     return <Preloader />;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import RandomAvatar, { getRandomAvatar } from "../RandomAvatar/RandomAvatar";
+import RandomAvatar from "../RandomAvatar/RandomAvatar";
 import FollowUnfollowButton from "./FollowUnfollowButton";
 import "./Users.css";
 
