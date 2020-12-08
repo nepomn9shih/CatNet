@@ -36,7 +36,7 @@ let initialState = {
       name: "Den4ik",
         messages: [
           { id: 1, message: "Привет!" },
-          { id: 2, message: "Я Маша" },
+          { id: 2, message: "Я готов" },
           { id: 3, message: "А ты?" },
           { id: 4, message: "Ответь!" },
         ]
