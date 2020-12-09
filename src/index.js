@@ -4,7 +4,7 @@ import App from './App';
 import './index.css';
 import { 
   // BrowserRouter, 
-  HashRouter } from "react-router-dom";
+  HashRouter } from "react-router-dom"; //используется для правильного перехода по ссылкам в GitHub Pages (в других случаях нужен BrowserRouter)
 import store from './redux/reduxStore'
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css'

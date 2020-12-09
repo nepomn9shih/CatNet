@@ -9,6 +9,7 @@ const Navbar = (props) => {
       <div className="item">
         <NavLink to="/profile" activeClassName="active">Profile</NavLink>
       </div>
+      <hr />
       <div className="item">
         <NavLink to="/dialogs" activeClassName="active">
           Chats <span className="badge badge-light">{props.dialogs.length}</span>
