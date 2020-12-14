@@ -37,21 +37,21 @@ export const getCaptchaUrlSuccessAC = (captchaUrl) => ({
   payload: {captchaUrl}
 });
 
+//получение данных пользователя
 export const getAuthUserDataThunkCreator = () => async (dispatch) => {
   const data = await authAPI.getMe();
-        
   if (data.resultCode === 0) {
     const {id, login, email} = data.data
     dispatch(setUserDataAC(id, login, email, true))
   }
 }
 
+//отправка данных авторизации на сервер
 export const loginThunkCreator = (email, password, rememberMe, captcha) => async (dispatch) => {
-  const data = await authAPI.login(email, password, rememberMe, captcha);
-    
+  const data = await authAPI.login(email, password, rememberMe, captcha);  
   if (data.resultCode === 0) {
     dispatch(getAuthUserDataThunkCreator())   //залогинились успешно, запрашиваем свои данные для профиля
-    dispatch(getCaptchaUrlSuccessAC(null))
+    dispatch(getCaptchaUrlSuccessAC(null))    //обнуляем капчу в стейте
   } else {
     if (data.resultCode === 10) { //не успешно, требуется капча, запрашиваем капчу
       dispatch(getCaptchaUrlThunkCreator())
@@ -61,15 +61,15 @@ export const loginThunkCreator = (email, password, rememberMe, captcha) => async
   }
 };
 
-
+//вылогиниваемся из учетной записи
 export const logoutThunkCreator = () => async (dispatch) => {
   const data = await authAPI.logout()
-  
   if (data.resultCode === 0) {
     dispatch(setUserDataAC(null, null, null, false))
   }
 };
 
+//делаем запрос на капчу
 export const getCaptchaUrlThunkCreator = () => async (dispatch) => {
   const data = await securityAPI.getCaptchaUrl()
   const captchaUrl = data.url

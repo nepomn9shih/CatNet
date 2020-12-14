@@ -1,10 +1,9 @@
 import { getAuthUserDataThunkCreator } from "./authReducer";
 
-const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS";
+const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
 
 let initialState = {
-  initialized: false
-  
+  initialized: false 
 };
 
 const appReducer = (state = initialState, action) => {
@@ -23,6 +22,7 @@ export const initializedSuccessAC = () => ({
   type: INITIALIZED_SUCCESS
 });
 
+//инициализация приложения, предварительный запрос данных пользователя
 export const initializeAppThunkCreator = () => (dispatch) => {
    let dispatchResult = dispatch(getAuthUserDataThunkCreator())
    dispatchResult.then(() => {dispatch(initializedSuccessAC())})

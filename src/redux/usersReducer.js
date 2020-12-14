@@ -1,12 +1,12 @@
 import { usersAPI } from "../API/api";
 
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_USERS = "SET_USERS"
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING"
-const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS"
+const FOLLOW = "users/FOLLOW";
+const UNFOLLOW = "users/UNFOLLOW";
+const SET_USERS = "users/SET_USERS"
+const SET_CURRENT_PAGE = "users/SET_CURRENT_PAGE"
+const SET_TOTAL_USERS_COUNT = "users/SET_TOTAL_USERS_COUNT"
+const TOGGLE_IS_FETCHING = "users/TOGGLE_IS_FETCHING"
+const TOGGLE_IS_FOLLOWING_PROGRESS = "users/TOGGLE_IS_FOLLOWING_PROGRESS"
 
 let initialState = {
   users: [],
@@ -92,23 +92,26 @@ export const setIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFe
 
 export const setFollowingInProgressAC = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
+//загрузка страницы юзеров нужного размера
 export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
-  dispatch(setIsFetchingAC(true));
+  dispatch(setIsFetchingAC(true)); //загрузка началась, показывается прелодер
   const data = await usersAPI.getUsers(currentPage, pageSize)
-  dispatch(setIsFetchingAC(false));
+  dispatch(setIsFetchingAC(false));//загрузка кончилась, прелодер исчезает
   dispatch(setUsersAC(data.items));
   dispatch(setTotalUsersCountAC(data.totalCount));
 }
 
+//отписка от юзера 
 export const unfollowThunkCreator = (userId) => async (dispatch) => {
-  dispatch(setFollowingInProgressAC(true, userId))
+  dispatch(setFollowingInProgressAC(true, userId)) //начинается процесс отписки и кнопка блокируется
   const data = await usersAPI.unfollowRequest(userId)
   if (data.resultCode === 0) {
     dispatch(unfollowAC(userId));
   }
-  dispatch(setFollowingInProgressAC(false, userId));
+  dispatch(setFollowingInProgressAC(false, userId)); //заканчивается процесс отписки и кнопка разблокируется
 }
 
+//подписка на юзера 
 export const followThunkCreator = (userId) => async (dispatch) => {
   dispatch(setFollowingInProgressAC(true, userId))
   const data = await usersAPI.followRequest(userId)

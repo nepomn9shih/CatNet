@@ -1,11 +1,11 @@
 import { stopSubmit } from "redux-form";
 import { profileAPI } from "../API/api";
 
-const ADD_POST = "ADD_POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE"
-const SET_STATUS = "SET_STATUS"
-const DELETE_POST = "DELETE_POST";
-const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS"
+const ADD_POST = "profile/ADD_POST";
+const SET_USER_PROFILE = "profile/SET_USER_PROFILE"
+const SET_STATUS = "profile/SET_STATUS"
+const DELETE_POST = "profile/DELETE_POST";
+const SAVE_PHOTO_SUCCESS = "profile/SAVE_PHOTO_SUCCESS"
 
 let initialState = {
   posts: [
@@ -83,49 +83,49 @@ export const savePhotoSuccessAC = (photos) => ({
   photos
 })
 
+//получаем профиль юзера и устанавливаем в стейт
 export const getProfileThunkCreator = (userId) => async (dispatch) => {
-  console.log("GetProfileThunkCreator")
   const data = await profileAPI.getProfile(userId)
   dispatch(setUserProfileAC(data));   
 }
 
+//получаем статус юзера и устанавливаем в стейт
 export const getStatusThunkCreator = (userId) => async (dispatch) => {
-  console.log("GetStatusThunkCreator")
   const data = await profileAPI.getStatus(userId)
   dispatch(setStatusAC(data));
 }
 
+//меняем статус юзера и устанавливаем в стейт
 export const updateStatusThunkCreator = (status) => async (dispatch) => {
-  console.log("UpdateStatusThunkCreator")
   try {
     const data = await profileAPI.updateStatus(status)
     if (data.resultCode === 0) {
       dispatch(setStatusAC(status));
     }  
   }
-  catch (error) {
+  catch (error) { 
     // alert(error)
     console.error(error)
   }
   
 }
 
+//загружаем фото профиля
 export const savePhotoThunkCreator = (photo) => async (dispatch) => {
-  console.log("SavePhotoThunkCreator")
   const data = await profileAPI.savePhoto(photo)
   if (data.resultCode === 0) {
     dispatch(savePhotoSuccessAC(data.data.photos));
   }  
 }
 
+//изменяем данные профиля
 export const saveProfileThunkCreator = (profile) => async (dispatch, getState) => {
-  console.log("SaveProfileThunkCreator")
   const userId = getState().auth.userId
   const data = await profileAPI.saveProfile(profile)
   if (data.resultCode === 0) {
     dispatch(getProfileThunkCreator(userId));
   }  else {
-    dispatch(stopSubmit("editContacts", {_error: data.messages[0]}))
+    dispatch(stopSubmit("editContacts", {_error: data.messages[0]})) //останавливаем подтверждение формы и получаем общую ошибку
     return Promise.reject(data.messages[0])
   }
 }

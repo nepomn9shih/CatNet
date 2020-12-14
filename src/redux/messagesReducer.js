@@ -1,5 +1,5 @@
-const SEND_MESSAGE = "SEND_MESSAGE";
-const SET_ACTIVE_DIALOG = "SET_ACTIVE_DIALOG"
+const SEND_MESSAGE = "messages/SEND_MESSAGE";
+const SET_ACTIVE_DIALOG = "messages/SET_ACTIVE_DIALOG"
 
 let initialState = {
   dialogs: [
@@ -45,6 +45,7 @@ let initialState = {
   activeDialog: null,
 };
 
+//находим индекс активного диалога
 const getIndexOfActiveDialog = (state) => {
 for (let i = 0; i < state.dialogs.length; i++) {
   if (+state.dialogs[i].id === +state.activeDialog) return i
@@ -55,7 +56,7 @@ return -1
 const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MESSAGE: {
-      let newState = JSON.parse(JSON.stringify(state))
+      let newState = JSON.parse(JSON.stringify(state)) //глубокое копирование стейта
       let index = getIndexOfActiveDialog(newState)
       let newMessage = {
         id: state.dialogs[index].messages.length + 1,
@@ -75,8 +76,10 @@ const messagesReducer = (state = initialState, action) => {
   }
 };
 
+//создаем новое сообщение
 export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody});
 
+//устанавливаем активный диалог
 export const setActiveDialogAC = (activeDialogNumber) => ({ type: SET_ACTIVE_DIALOG, activeDialogNumber });
 
 export default messagesReducer;

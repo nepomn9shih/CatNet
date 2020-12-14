@@ -13,7 +13,7 @@ export const maxLengthCreator = (maxLength) => {
 
 export const minLengthCreator = (minLength) => {
     return ((value) => {
-         if (value && (value.length < minLength)) return `Max length is ${minLength} symbols`
+         if (value && (value.length < minLength)) return `Min length is ${minLength} symbols`
          return undefined
      })
  }
