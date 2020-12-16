@@ -8,6 +8,9 @@ const Post = ({ message, likeCount = 0, profile, deletePost, postId}) => {
   return (
     <div className="mb-2 card border-0 bg-dark">
     <div className="d-flex flex-wrap">
+      <div>
+        <button onClick={() => {deletePost(postId)}} className="btn btn-sm btn-warning m-1 p-2">&#128465;</button>
+      </div>
         <div className="list-group list-group-horizontal m-1">
           <div className="postAvatar list-group-item p-1">
           {profile.photos.large ? (
@@ -26,9 +29,6 @@ const Post = ({ message, likeCount = 0, profile, deletePost, postId}) => {
         </div>
       <div className="card overflowHack flex-grow-1 m-1 p-2">
         {message}
-      </div>
-      <div>
-        <button onClick={() => {deletePost(postId)}} className="btn btn-sm btn-warning m-1 mr-2 p-2">&#128465;</button>
       </div>
     </div>
     </div>

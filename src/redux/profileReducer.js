@@ -9,10 +9,10 @@ const SAVE_PHOTO_SUCCESS = "profile/SAVE_PHOTO_SUCCESS"
 
 let initialState = {
   posts: [
-    { id: 1, message: "Привет!", likeCount: 5 },
-    { id: 2, message: "Как дела?", likeCount: 7 },
-    { id: 3, message: "Эй!", likeCount: 122 },
-    { id: 4, message: "Чё молчишь?", likeCount: 6 },
+    { id: 1, message: "Опыт - это то, что позволяет человеку, сделав ошибку, сказать: 'Я так и знал!'", likeCount: 122 },
+    { id: 2, message: "В мире еще много граблей, на которые не ступала нога человека!", likeCount: 21 },
+    { id: 3, message: "Начиная новое дело, надо быть готовым даже к тому, что у тебя все получится", likeCount: 8 },
+    { id: 4, message: "Что недопустимо в принципе, часто необходимо на практике.", likeCount: 6 },
   ],
   profile: null,
   status: ""
