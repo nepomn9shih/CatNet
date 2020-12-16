@@ -8,6 +8,7 @@ const Profile = React.memo((props) => {
   if (!props.profile) {
     return <Preloader />;
   }
+  let isOwner = (props.authUserId === props.profile.userId)
   return (
     <div>
       <ProfileInfo 
@@ -21,10 +22,11 @@ const Profile = React.memo((props) => {
       authUserId={props.authUserId}
       savePhoto={props.savePhoto}
       saveProfile={props.saveProfile}
+      isOwner={isOwner}
       />
-      <MyPostsContainer 
+      {isOwner && <MyPostsContainer 
       store={props.store}
-    />
+    />}
     </div>
   );
 });

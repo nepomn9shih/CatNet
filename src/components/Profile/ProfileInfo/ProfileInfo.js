@@ -13,8 +13,6 @@ const ProfileInfo = React.memo((props) => {
   // }
   const chosenUser = props.users.filter(user => user.id === props.profile.userId)
   
-  let isOwner = (props.authUserId === props.profile.userId)
-
   return (
     <div>
       <div className="card bg-dark m-3">
@@ -22,11 +20,11 @@ const ProfileInfo = React.memo((props) => {
           <div className="">
             <ProfileAvatarWithName 
               profile={props.profile} 
-              isOwner={isOwner} 
+              isOwner={props.isOwner} 
               savePhoto={props.savePhoto}/>
             <ProfileStatusWithHooks 
               profile={props.profile} 
-              isOwner={isOwner} 
+              isOwner={props.isOwner} 
               status={props.status} 
               updateStatus={props.updateStatus}/>
             {chosenUser[0] 
@@ -41,7 +39,7 @@ const ProfileInfo = React.memo((props) => {
             : ""}
           </div>
           <div className="flex-grow-1">
-          <ProfileContacts profile={props.profile} isOwner={isOwner} saveProfile={props.saveProfile}/>
+          <ProfileContacts profile={props.profile} isOwner={props.isOwner} saveProfile={props.saveProfile}/>
           </div>
         </div>
       </div>

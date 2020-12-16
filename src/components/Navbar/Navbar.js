@@ -12,7 +12,7 @@ const Navbar = (props) => {
       <hr />
       <div className="item">
         <NavLink to="/dialogs" activeClassName="active">
-          Chats <span className="badge badge-light">{props.dialogs.length}</span>
+          Chats {props.isAuth && <span className="badge badge-light">{props.dialogs.length}</span>}
         </NavLink>
       </div>
       <div className="item">
@@ -46,7 +46,8 @@ const Navbar = (props) => {
 const mapStateToProps = (state) => {
   return {
     dialogs: state.messagesPage.dialogs,
-    totalUsersCount: state.usersPage.totalUsersCount
+    totalUsersCount: state.usersPage.totalUsersCount,
+    isAuth: state.auth.isAuth
   }
 }
 

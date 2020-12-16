@@ -1,6 +1,6 @@
 import React from "react";
 import randomAvatar1 from "../../images/randomAvatar1.jpg"
-import randomAvatar2 from "../../images/randomAvatar2.webp"
+import randomAvatar2 from "../../images/randomAvatar2.jpg"
 import randomAvatar3 from "../../images/randomAvatar3.jpg"
 import randomAvatar4 from "../../images/randomAvatar4.jpg"
 import randomAvatar5 from "../../images/randomAvatar5.jpg"
@@ -14,7 +14,8 @@ const RandomAvatar = ({userId}) => {
   let temp = String(userId)
   let current = parseInt(temp[temp.length-1])
   
-  let random = current || Math.ceil(Math.random()*10)
+  // let random = current || Math.ceil(Math.random()*10)
+  let random = current || "default"
     return (
         <img className="w-100 rounded" src={getRandomAvatar(random)} alt="randomAvatar" />
     )

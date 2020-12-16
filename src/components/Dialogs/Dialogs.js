@@ -25,7 +25,7 @@ const Dialogs = (props) => {
               activeDialog={props.messagesPage.activeDialog}
             />}
           )}
-          <button className="btn btn-warning btn-sm">***</button>
+          <button disabled="true" className="btn btn-warning btn-sm">***</button>
         </div>
       </div>
       <div className="col">
