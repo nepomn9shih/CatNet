@@ -16,12 +16,13 @@ const ProfileInfo = React.memo((props) => {
   return (
     <div>
       <div className="card bg-dark m-3">
-        <div className="d-flex flex-wrap">
-          <div className="">
+        <div className="d-flex flex-wrap justify-content-center">
+          <div>
             <ProfileAvatarWithName 
               profile={props.profile} 
               isOwner={props.isOwner} 
-              savePhoto={props.savePhoto}/>
+              savePhoto={props.savePhoto}
+            />
             <ProfileStatusWithHooks 
               profile={props.profile} 
               isOwner={props.isOwner} 

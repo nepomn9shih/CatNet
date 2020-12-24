@@ -14,7 +14,7 @@ const DialogItem = ({ name, id, setActiveDialog, activeDialog}) => {
               <RandomAvatar userId={id}/>
             </div>
             <div className="p-2">
-            {name}
+            <h6>{name}</h6>
             </div>
           </div>
         </div>

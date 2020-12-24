@@ -12,7 +12,7 @@ const Navbar = (props) => {
       <hr />
       <div className="item">
         <NavLink to="/dialogs" activeClassName="active">
-          Chats {props.isAuth && <span className="badge badge-light">{props.dialogs.length}</span>}
+          Chat {props.isAuth && <span className="badge badge-light">{props.dialogs.length}</span>}
         </NavLink>
       </div>
       <div className="item">

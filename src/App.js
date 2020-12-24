@@ -49,9 +49,10 @@ class App extends React.Component {
   }
   
   return (
-    <div className="container-lg">
+    <div className="container-lg px-0">
+    <div className="d-flex flex-column main">
       <HeaderContainer />
-      <div className="row">
+      <div className="row flex-grow-1">
         <div className="col-3 col-md-2 bg-navbar-colour">
           <Navbar />
         </div>
@@ -83,8 +84,10 @@ class App extends React.Component {
             <Route path="*" component={Error404} />
           </Switch>
         </div>
+        </div>
         <Footer />
-      </div>
+      
+    </div>
     </div>
   );
 };

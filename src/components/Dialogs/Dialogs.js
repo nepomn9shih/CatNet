@@ -35,7 +35,7 @@ const Dialogs = (props) => {
               let currentUserMessages = props.messagesPage.dialogs.filter((dialog) => {return +dialog.id === +userId})
               return <div className="list-group m-2">
                 <div className="list-group-item text-center bg-light">
-                  <b>{currentUserMessages[0].name}</b>
+                  <h5>{currentUserMessages[0].name}</h5>
                 </div>
                 <div className="list-group-item">
                   {currentUserMessages[0].messages.map((message) => (

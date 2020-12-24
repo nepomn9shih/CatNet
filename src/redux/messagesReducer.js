@@ -14,7 +14,7 @@ let initialState = {
     },
     {
       id: 2,
-      name: "samurai dimych",
+      name: "Dimych",
       messages: [
         { id: 1, message: "Здарова!" },
         { id: 2, message: "Че делаешь?" },

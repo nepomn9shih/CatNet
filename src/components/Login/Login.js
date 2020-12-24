@@ -55,12 +55,12 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
               validate={[requiredField]}
               />}
           {error && <div className="formSummaryError">{error}</div>}
-          <div className="d-flex justify-content-center align-items-center">
+          <div className="d-flex justify-content-center align-items-center my-1">
             <Field name={"rememberMe"} type={"checkbox"} component={Input}/> 
             <div className="ml-2">Remember me</div>
           </div>
           <div>
-            <button className="btn btn-warning btn-block">Login</button>
+            <button className="btn btn-warning btn-block">Login</button> 
           </div>
         </form>
     );
