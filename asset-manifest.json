@@ -2,11 +2,11 @@
   "files": {
     "static/js/0.ecba5529.chunk.js": "/CatNet/static/js/0.ecba5529.chunk.js",
     "static/js/0.ecba5529.chunk.js.map": "/CatNet/static/js/0.ecba5529.chunk.js.map",
-    "main.css": "/CatNet/static/css/main.260a4d18.chunk.css",
-    "main.js": "/CatNet/static/js/main.68f8b9ac.chunk.js",
-    "main.js.map": "/CatNet/static/js/main.68f8b9ac.chunk.js.map",
-    "runtime-main.js": "/CatNet/static/js/runtime-main.3993dcdf.js",
-    "runtime-main.js.map": "/CatNet/static/js/runtime-main.3993dcdf.js.map",
+    "main.css": "/CatNet/static/css/main.854d35ce.chunk.css",
+    "main.js": "/CatNet/static/js/main.8bb3539d.chunk.js",
+    "main.js.map": "/CatNet/static/js/main.8bb3539d.chunk.js.map",
+    "runtime-main.js": "/CatNet/static/js/runtime-main.57e47269.js",
+    "runtime-main.js.map": "/CatNet/static/js/runtime-main.57e47269.js.map",
     "static/css/3.20aa2d7b.chunk.css": "/CatNet/static/css/3.20aa2d7b.chunk.css",
     "static/js/3.8d7f6372.chunk.js": "/CatNet/static/js/3.8d7f6372.chunk.js",
     "static/js/3.8d7f6372.chunk.js.map": "/CatNet/static/js/3.8d7f6372.chunk.js.map",
@@ -14,8 +14,8 @@
     "static/js/4.507d5388.chunk.js": "/CatNet/static/js/4.507d5388.chunk.js",
     "static/js/4.507d5388.chunk.js.map": "/CatNet/static/js/4.507d5388.chunk.js.map",
     "static/css/5.4c472e76.chunk.css": "/CatNet/static/css/5.4c472e76.chunk.css",
-    "static/js/5.52e4787f.chunk.js": "/CatNet/static/js/5.52e4787f.chunk.js",
-    "static/js/5.52e4787f.chunk.js.map": "/CatNet/static/js/5.52e4787f.chunk.js.map",
+    "static/js/5.5e0496b3.chunk.js": "/CatNet/static/js/5.5e0496b3.chunk.js",
+    "static/js/5.5e0496b3.chunk.js.map": "/CatNet/static/js/5.5e0496b3.chunk.js.map",
     "static/css/6.d1797070.chunk.css": "/CatNet/static/css/6.d1797070.chunk.css",
     "static/js/6.19e7804d.chunk.js": "/CatNet/static/js/6.19e7804d.chunk.js",
     "static/js/6.19e7804d.chunk.js.map": "/CatNet/static/js/6.19e7804d.chunk.js.map",
@@ -28,7 +28,7 @@
     "static/css/5.4c472e76.chunk.css.map": "/CatNet/static/css/5.4c472e76.chunk.css.map",
     "static/css/6.d1797070.chunk.css.map": "/CatNet/static/css/6.d1797070.chunk.css.map",
     "static/css/7.5d0ba3a0.chunk.css.map": "/CatNet/static/css/7.5d0ba3a0.chunk.css.map",
-    "static/css/main.260a4d18.chunk.css.map": "/CatNet/static/css/main.260a4d18.chunk.css.map",
+    "static/css/main.854d35ce.chunk.css.map": "/CatNet/static/css/main.854d35ce.chunk.css.map",
     "static/js/3.8d7f6372.chunk.js.LICENSE.txt": "/CatNet/static/js/3.8d7f6372.chunk.js.LICENSE.txt",
     "static/media/about.6e4bc382.gif": "/CatNet/static/media/about.6e4bc382.gif",
     "static/media/error.a6ea8901.gif": "/CatNet/static/media/error.a6ea8901.gif",
@@ -51,10 +51,10 @@
     "static/media/start.33df82b7.gif": "/CatNet/static/media/start.33df82b7.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.3993dcdf.js",
+    "static/js/runtime-main.57e47269.js",
     "static/css/3.20aa2d7b.chunk.css",
     "static/js/3.8d7f6372.chunk.js",
-    "static/css/main.260a4d18.chunk.css",
-    "static/js/main.68f8b9ac.chunk.js"
+    "static/css/main.854d35ce.chunk.css",
+    "static/js/main.8bb3539d.chunk.js"
   ]
 }
