@@ -2,11 +2,15 @@ import { getAuthUserDataThunkCreator } from "./authReducer";
 
 const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
 
-let initialState = {
+type AppInitialStateType = {
+  initialized: boolean
+};
+
+let initialState: AppInitialStateType = {
   initialized: false 
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any):AppInitialStateType => {
   switch (action.type) {
     case INITIALIZED_SUCCESS: 
       return {
@@ -18,12 +22,16 @@ const appReducer = (state = initialState, action) => {
   }
 };
 
-export const initializedSuccessAC = () => ({ 
+type initializedSuccessActionType = {
+  type: typeof INITIALIZED_SUCCESS
+}
+
+export const initializedSuccessAC = (): initializedSuccessActionType => ({ 
   type: INITIALIZED_SUCCESS
 });
 
 //инициализация приложения, предварительный запрос данных пользователя
-export const initializeAppThunkCreator = () => (dispatch) => {
+export const initializeAppThunkCreator = () => (dispatch: any) => {
    let dispatchResult = dispatch(getAuthUserDataThunkCreator())
    dispatchResult.then(() => {dispatch(initializedSuccessAC())})
 }
