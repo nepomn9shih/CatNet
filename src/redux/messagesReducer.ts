@@ -1,6 +1,17 @@
 const SEND_MESSAGE = "messages/SEND_MESSAGE";
 const SET_ACTIVE_DIALOG = "messages/SET_ACTIVE_DIALOG"
 
+type InitialStateMessageType = {
+  id: number
+  message: string
+}
+
+type InitialStateDialogType = {
+  id: number
+  name: string
+  messages: Array<InitialStateMessageType>
+}
+
 let initialState = {
   dialogs: [
     {
@@ -41,19 +52,21 @@ let initialState = {
           { id: 4, message: "Ответь!" },
         ]
     },
-  ],
-  activeDialog: null,
+  ] as Array<InitialStateDialogType>,
+  activeDialog: null as number | null,
 };
 
+type MessageinitialStateType = typeof initialState
+
 //находим индекс активного диалога
-const getIndexOfActiveDialog = (state) => {
+const getIndexOfActiveDialog = (state: MessageinitialStateType) => {
 for (let i = 0; i < state.dialogs.length; i++) {
-  if (+state.dialogs[i].id === +state.activeDialog) return i
+  if (+state.dialogs[i].id === state.activeDialog) return i
 }
 return -1
 }
 
-const messagesReducer = (state = initialState, action) => {
+const messagesReducer = (state = initialState, action: any): MessageinitialStateType => {
   switch (action.type) {
     case SEND_MESSAGE: {
       let newState = JSON.parse(JSON.stringify(state)) //глубокое копирование стейта
@@ -76,10 +89,20 @@ const messagesReducer = (state = initialState, action) => {
   }
 };
 
+type SendMessageType = {
+  type: typeof SEND_MESSAGE
+  newMessageBody: string
+}
+
 //создаем новое сообщение
-export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody});
+export const sendMessageCreator = (newMessageBody: string): SendMessageType => ({ type: SEND_MESSAGE, newMessageBody});
+
+type SetActiveDialogType = {
+  type: typeof SET_ACTIVE_DIALOG
+  activeDialogNumber: number
+}
 
 //устанавливаем активный диалог
-export const setActiveDialogAC = (activeDialogNumber) => ({ type: SET_ACTIVE_DIALOG, activeDialogNumber });
+export const setActiveDialogAC = (activeDialogNumber: number):SetActiveDialogType => ({ type: SET_ACTIVE_DIALOG, activeDialogNumber });
 
 export default messagesReducer;

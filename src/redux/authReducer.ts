@@ -4,23 +4,16 @@ import { authAPI, securityAPI } from "../API/api";
 const SET_USER_DATA = "auth/SET_USER_DATA";
 const GET_CAPTCHA_URL_SUCCESS = "auth/GET_CAPTCHA_URL_SUCCESS";
 
-export type initialStateType = {
-  userId: number | null,
-  email: string | null,
-  login: null,
-  isAuth: boolean,
-  isFetching: boolean,
-  captchaUrl: string | null 
-};
-
-let initialState: initialStateType = {
-  userId: null,
-  email: null,
-  login: null,
+let initialState = {
+  userId: null as number | null,
+  email: null as number | null,
+  login: null as number | null,
   isAuth: false,
   isFetching: false,
-  captchaUrl: null //если null, то капча не обязательна
+  captchaUrl: null as number | null //если null, то капча не обязательна
 };
+
+export type initialStateType = typeof initialState
 
 const authReducer = (state = initialState, action: any):initialStateType => {
   switch (action.type) {
@@ -53,7 +46,12 @@ export const setUserDataAC = (userId: number | null, login: string | null, email
   payload: {userId, login, email, isAuth}
 });
 
-export const getCaptchaUrlSuccessAC = (captchaUrl: any) => ({ 
+type GetCaptchaUrlSuccess = {
+  type: typeof GET_CAPTCHA_URL_SUCCESS
+  payload: {captchaUrl: string | null}
+}
+
+export const getCaptchaUrlSuccessAC = (captchaUrl: string | null):GetCaptchaUrlSuccess => ({ 
   type: GET_CAPTCHA_URL_SUCCESS, 
   payload: {captchaUrl}
 });
