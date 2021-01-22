@@ -1,16 +1,7 @@
+import { InitialStateDialogType } from "../types/types";
+
 const SEND_MESSAGE = "messages/SEND_MESSAGE";
 const SET_ACTIVE_DIALOG = "messages/SET_ACTIVE_DIALOG"
-
-type InitialStateMessageType = {
-  id: number
-  message: string
-}
-
-type InitialStateDialogType = {
-  id: number
-  name: string
-  messages: Array<InitialStateMessageType>
-}
 
 let initialState = {
   dialogs: [
