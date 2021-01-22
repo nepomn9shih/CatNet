@@ -1,14 +1,22 @@
 import React from "react";
 
-const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
-  let pagesCount = Math.ceil(totalUsersCount / pageSize);
-  let pages = [];
-  for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+type PaginatorPropsType = {
+  totalUsersCount: number
+  pageSize: number
+  currentPage: number
+  onPageChanged: Function
+}
+
+const Paginator = (props: PaginatorPropsType) => {
+  let {totalUsersCount, pageSize, currentPage, onPageChanged} = props
+  let pagesCount: number = Math.ceil(totalUsersCount / pageSize);
+  let pages: Array<number> = [];
+  for (let i:number = currentPage - 2; i <= currentPage + 2; i++) {
     if (i > 0 && i <= pagesCount) pages.push(i);
   }
 
   return (
-    <div class="btn-group" role="group">
+    <div className="btn-group" role="group">
       <button
         type="button"
         disabled={1 === currentPage}
@@ -21,7 +29,7 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
       >
         &lt;&lt;
       </button>
-      {pages.map((page) => {
+      {pages.map((page:number) => {
         return (
           <button
             type="button"
