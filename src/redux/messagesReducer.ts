@@ -44,7 +44,7 @@ let initialState = {
         ]
     },
   ] as Array<InitialStateDialogType>,
-  activeDialog: null as number | null,
+  activeDialog: 8 as number | null,
 };
 
 type MessageinitialStateType = typeof initialState

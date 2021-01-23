@@ -67,6 +67,7 @@ class App extends React.Component {
               path="/profile/:userId?"
               render={withSuspense(ProfileContainer)}
             />
+            <Redirect exact from="/dialogs" to={"/dialogs/" + this.props.activeDialog} />
             <Route
               path="/dialogs/:dialogId?"
               render={withSuspense(DialogsContainer)}
@@ -95,7 +96,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    initialized: state.app.initialized
+    initialized: state.app.initialized,
+    activeDialog: state.messagesPage.activeDialog
   }
 }
 
