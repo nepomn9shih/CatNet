@@ -1,3 +1,4 @@
+import { ActionType } from "../types/types";
 import { getAuthUserDataThunkCreator } from "./authReducer";
 
 const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
@@ -10,7 +11,7 @@ let initialState: AppInitialStateType = {
   initialized: false 
 };
 
-const appReducer = (state = initialState, action: any):AppInitialStateType => {
+const appReducer = (state = initialState, action: ActionType):AppInitialStateType => {
   switch (action.type) {
     case INITIALIZED_SUCCESS: 
       return {
@@ -22,11 +23,11 @@ const appReducer = (state = initialState, action: any):AppInitialStateType => {
   }
 };
 
-type initializedSuccessActionType = {
+export type InitializedSuccessActionType = {
   type: typeof INITIALIZED_SUCCESS
 }
 
-export const initializedSuccessAC = (): initializedSuccessActionType => ({ 
+export const initializedSuccessAC = (): InitializedSuccessActionType => ({ 
   type: INITIALIZED_SUCCESS
 });
 

@@ -1,4 +1,5 @@
-const { default: Axios } = require("axios");
+import { ProfileType } from "../types/types";
+import Axios from "axios"
 
 const axiosCreated = Axios.create({
     withCredentials: true,
@@ -15,12 +16,12 @@ export const usersAPI = {
         ).then(response => response.data);
     },
 
-    followRequest(userId) {
+    followRequest(userId: number) {
        return axiosCreated.post(
             `follow/${userId}`).then(response => response.data);
     },
 
-    unfollowRequest(userId) {
+    unfollowRequest(userId: number) {
         return axiosCreated.delete(
             `follow/${userId}`).then(response => response.data);
     },
@@ -28,25 +29,25 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-    getProfile(userId) {
+    getProfile(userId: number) {
         return axiosCreated.get(
             `profile/${userId}`
         ).then(response => response.data)
     },
 
-    getStatus(userId) {
+    getStatus(userId: number) {
         return axiosCreated.get(
             `profile/status/${userId}`
         ).then(response => response.data)
     },
 
-    updateStatus(status) {
+    updateStatus(status: string) {
         return axiosCreated.put(
             `profile/status`, {status: status}
         ).then(response => response.data)
     },
 
-    savePhoto(photoFile) {
+    savePhoto(photoFile: any) {
         const formData = new FormData()
         formData.append("image", photoFile)
         return axiosCreated.put(
@@ -58,23 +59,40 @@ export const profileAPI = {
         ).then(response => response.data)
     },
 
-    saveProfile(profile) {
+    saveProfile(profile: ProfileType) {
         return axiosCreated.put(
             `profile`, profile
         ).then(response => response.data)
     }
 }
 
-export const authAPI = {
+export enum ResultCodesEnum {
+    Success = 0,
+    Error = 1,
+    CapchaIsRequired = 10 
+}
 
+type GetMeResponseType = {
+    data: {id: number, email: string, login: string }
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+}
+
+type LoginResponseType = {
+    data: {userId: number}
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+}
+
+export const authAPI = {
     getMe() {
-        return axiosCreated.get(
+        return axiosCreated.get<GetMeResponseType>(
             `auth/me`
           ).then(response => response.data);
     },
  
-    login(email, password, rememberMe = false, captcha = null) {
-        return axiosCreated.post(
+    login(email: string, password: string, rememberMe = false, captcha: null | string = null) {
+        return axiosCreated.post<LoginResponseType>(
             `auth/login`, {email, password, rememberMe, captcha}
           ).then(response => response.data);
     },

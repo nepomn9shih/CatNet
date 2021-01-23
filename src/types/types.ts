@@ -1,3 +1,27 @@
+import { Dispatch } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { InitializedSuccessActionType } from "../redux/appReducer";
+import { SetUserDataActionType, GetCaptchaUrlSuccessType } from "../redux/authReducer";
+import { AppStateType } from "../redux/reduxStore";
+import { FollowActionType, SetCurrentPageActionType, SetFollowingInProgressActionType, SetIsFetchingActionType, SetTotalUsersCountActionType, SetUsersActionType, UnfollowActionType } from "../redux/usersReducer";
+
+export type ActionType =
+  FollowActionType
+  | UnfollowActionType
+  | SetUsersActionType
+  | SetCurrentPageActionType
+  | SetTotalUsersCountActionType
+  | SetIsFetchingActionType
+  | SetFollowingInProgressActionType
+  | SetUserDataActionType
+  | GetCaptchaUrlSuccessType
+  | InitializedSuccessActionType
+  ;
+
+export type DispatchType = Dispatch<ActionType>
+
+export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionType>
+
 //messagesReducer
 
 export type InitialStateMessageType = {

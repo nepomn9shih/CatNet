@@ -18,7 +18,8 @@ const About = (props) => {
                     <span className="badge badge-primary">redux-form</span>{" "} 
                     <span className="badge badge-primary">redux-thunk</span>{" "} 
                     <span className="badge badge-info">axios</span>{" "} 
-                    <span className="badge badge-warning">bootstrap</span>
+                    <span className="badge badge-warning">bootstrap</span>{" "} 
+                    <span className="badge badge-secondary">typescript</span>
                 </div>
                 <div>Используется сторонний серверный API сайта <b>social-network.samuraijs.com</b></div>
             </div>
