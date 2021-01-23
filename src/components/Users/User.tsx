@@ -1,10 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { UsersType } from "../../types/types";
 import RandomAvatar from "../RandomAvatar/RandomAvatar";
 import FollowUnfollowButton from "./FollowUnfollowButton";
 import "./Users.css";
 
-const User = ({user, followingInProgress, follow, unfollow}) => {
+type UserPropsType = {
+  user: UsersType
+  followingInProgress: any
+  unfollow: (id: number) => void
+  follow: (id: number) => void
+}
+
+const User: React.FC<UserPropsType> = ({user, followingInProgress, follow, unfollow}) => {
   
   return (
     <div className="mb-3 p-2 card text-center userCard" key={user.id}>

@@ -1,10 +1,23 @@
 import React from "react";
+import { UsersType } from "../../types/types";
 import Preloader from "../Preloader/Preloader";
 import Paginator from "./Paginator";
 import User from "./User";
 import "./Users.css";
 
-const Users = ({
+type UsersPropsTypes = {
+  totalUsersCount: number
+  pageSize: number
+  currentPage: number
+  onPageChanged: (page: number) => void
+  followingInProgress: boolean
+  follow: (id: number) => void
+  unfollow: (id: number) => void
+  users: Array<UsersType>
+  isFetching: boolean
+}
+
+const Users:React.FC<UsersPropsTypes> = ({
   totalUsersCount, pageSize, currentPage, 
   onPageChanged, followingInProgress, 
   follow, unfollow, users, isFetching

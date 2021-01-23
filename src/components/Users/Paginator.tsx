@@ -4,11 +4,10 @@ type PaginatorPropsType = {
   totalUsersCount: number
   pageSize: number
   currentPage: number
-  onPageChanged: Function
+  onPageChanged: (page: number) => void
 }
 
-const Paginator = (props: PaginatorPropsType) => {
-  let {totalUsersCount, pageSize, currentPage, onPageChanged} = props
+const Paginator: React.FC<PaginatorPropsType> = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
   let pagesCount: number = Math.ceil(totalUsersCount / pageSize);
   let pages: Array<number> = [];
   for (let i:number = currentPage - 2; i <= currentPage + 2; i++) {
